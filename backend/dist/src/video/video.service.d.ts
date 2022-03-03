@@ -6,7 +6,7 @@ export declare class VideoService {
     private videoModel;
     private commentService;
     constructor(videoModel: Model<VideoDocument>, commentService: CommentService);
-    findAll(categoryId: string): Promise<(Video & import("mongoose").Document<any, any, any> & {
+    findAll(): Promise<(Video & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
     createVideo(createVideo: VideoDto, photoURL: string, fullName: string): Promise<Video>;

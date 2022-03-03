@@ -11,8 +11,8 @@ export class VideoService {
         private commentService: CommentService
     ) { }
 
-    async findAll(categoryId: string) {
-        return this.videoModel.find({ categoryId }).populate('comments', 'title createdBy', 'Comment')
+    async findAll() {
+        return this.videoModel.find();
     }
 
     async createVideo(createVideo: VideoDto, photoURL: string, fullName: string): Promise<Video> {
@@ -32,17 +32,13 @@ export class VideoService {
     async updateById(id: string, videoDto: VideoDto, photoURL?: string): Promise<Video> {
         let video = await this.videoModel.findById(id.toString())
         if (photoURL) {
-            video.videoId = videoDto.videoId;
+            video.videoUrl = videoDto.videoUrl;
             video.title = videoDto.title;
-            video.metaDescription = videoDto.metaDescription;
-            video.content = videoDto.content;
             video.photoURL = photoURL;
             return video.save();
         } else {
-            video.videoId = videoDto.videoId;
+            video.videoUrl = videoDto.videoUrl;
             video.title = videoDto.title;
-            video.metaDescription = videoDto.metaDescription;
-            video.content = videoDto.content;
             return video.save();
         }
     }

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Forum, ForumDocument } from 'src/forum/schemas/forum.schemas';
 import { Reply, ReplyDocument } from 'src/reply/schemas/reply.schemas';
 import { Video, VideoDocument } from 'src/video/schemas/video.schemas';
 import { CommentDto } from './dto/comment.dto';
@@ -12,7 +11,6 @@ export class CommentService {
     constructor(@InjectModel(Comment.name) private commentModel: Model<CommentDocument>,
     @InjectModel(Video.name) private videoModel: Model<VideoDocument>,
         @InjectModel(Reply.name) private replyModel: Model<ReplyDocument>,
-        @InjectModel(Forum.name) private forumModel: Model<ForumDocument>,
 
     ) { }
 
@@ -24,14 +22,10 @@ export class CommentService {
         let date = new Date();
         let comment = new this.commentModel({ ...createCommentDto, createdAt: date, createdBy: fullName });
         let video = await this.videoModel.findById(createCommentDto.typeId);
-        let forum = await this.forumModel.findById(createCommentDto.typeId);
         if (video) {
             video.comments.push(comment._id);
             video.save()
-        } else if (forum) {
-            forum.comments.push(comment._id);
-            forum.save()
-        }
+        } 
 
         return comment.save()
     }

@@ -1,7 +1,4 @@
 export class VideoDto {
-    videoId: string;
+    videoUrl: string;
     title: string;
-    metaDescription: string;
-    content: string;
-    categoryId: string;
 }

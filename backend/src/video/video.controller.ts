@@ -9,10 +9,10 @@ import { VideoService } from './video.service';
 export class VideoController {
     constructor(private videoService: VideoService) { }
 
-    @Get(':categoryId')
-    async getVideo(@Param('categoryId') categoryId) {
-        return this.videoService.findAll(categoryId)
-    }
+   @Get()
+   async findAll(){
+       return this.videoService.findAll();
+   }
 
     @UseGuards(JwtAuthGuard)
     @Post('create')

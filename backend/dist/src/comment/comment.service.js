@@ -11,21 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommentService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const forum_schemas_1 = require("../forum/schemas/forum.schemas");
 const reply_schemas_1 = require("../reply/schemas/reply.schemas");
 const video_schemas_1 = require("../video/schemas/video.schemas");
 const comment_schemas_1 = require("./schemas/comment.schemas");
 let CommentService = class CommentService {
-    constructor(commentModel, videoModel, replyModel, forumModel) {
+    constructor(commentModel, videoModel, replyModel) {
         this.commentModel = commentModel;
         this.videoModel = videoModel;
         this.replyModel = replyModel;
-        this.forumModel = forumModel;
     }
     async getComment(typeId) {
         return this.commentModel.find({ typeId }).populate('replies', 'title createdBy', 'Reply');
@@ -34,14 +33,9 @@ let CommentService = class CommentService {
         let date = new Date();
         let comment = new this.commentModel(Object.assign(Object.assign({}, createCommentDto), { createdAt: date, createdBy: fullName }));
         let video = await this.videoModel.findById(createCommentDto.typeId);
-        let forum = await this.forumModel.findById(createCommentDto.typeId);
         if (video) {
             video.comments.push(comment._id);
             video.save();
-        }
-        else if (forum) {
-            forum.comments.push(comment._id);
-            forum.save();
         }
         return comment.save();
     }
@@ -66,11 +60,7 @@ CommentService = __decorate([
     __param(0, (0, mongoose_1.InjectModel)(comment_schemas_1.Comment.name)),
     __param(1, (0, mongoose_1.InjectModel)(video_schemas_1.Video.name)),
     __param(2, (0, mongoose_1.InjectModel)(reply_schemas_1.Reply.name)),
-    __param(3, (0, mongoose_1.InjectModel)(forum_schemas_1.Forum.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model,
-        mongoose_2.Model,
-        mongoose_2.Model,
-        mongoose_2.Model])
+    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object, typeof (_b = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _b : Object, typeof (_c = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _c : Object])
 ], CommentService);
 exports.CommentService = CommentService;
 //# sourceMappingURL=comment.service.js.map

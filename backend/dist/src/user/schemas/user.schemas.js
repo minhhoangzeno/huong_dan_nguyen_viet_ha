@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
@@ -18,7 +19,7 @@ let User = class User {
 };
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", mongoose.Schema.Types.ObjectId)
+    __metadata("design:type", typeof (_c = typeof mongoose !== "undefined" && (_a = mongoose.Schema) !== void 0 && (_b = _a.Types) !== void 0 && _b.ObjectId) === "function" ? _c : Object)
 ], User.prototype, "id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ unique: true, required: true }),

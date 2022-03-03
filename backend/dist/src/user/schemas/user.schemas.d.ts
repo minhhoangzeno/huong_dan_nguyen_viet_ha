@@ -15,4 +15,4 @@ export declare class User {
     fullName: string;
     photoURL: string;
 }
-export declare const UserSchema: mongoose.Schema<Document<User, any, any>, mongoose.Model<Document<User, any, any>, any, any, any>, any, any>;
+export declare const UserSchema: any;

@@ -5,7 +5,7 @@ import { VideoService } from './video.service';
 export declare class VideoController {
     private videoService;
     constructor(videoService: VideoService);
-    getVideo(categoryId: any): Promise<(import("./schemas/video.schemas").Video & import("mongoose").Document<any, any, any> & {
+    findAll(): Promise<(import("./schemas/video.schemas").Video & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
     uploadFile(file: Express.Multer.File, body: VideoDto, req: any): Promise<import("./schemas/video.schemas").Video>;

@@ -13,31 +13,29 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
 const blog_module_1 = require("./blog/blog.module");
-const category_forum_module_1 = require("./category-forum/category-forum.module");
-const category_video_module_1 = require("./category-video/category-video.module");
 const comment_module_1 = require("./comment/comment.module");
-const forum_module_1 = require("./forum/forum.module");
+const countdown_module_1 = require("./countdown/countdown.module");
+const product_module_1 = require("./product/product.module");
+const productcountdown_module_1 = require("./productcountdown/productcountdown.module");
 const reply_module_1 = require("./reply/reply.module");
 const user_module_1 = require("./user/user.module");
 const video_module_1 = require("./video/video.module");
-const fee_module_1 = require("./fee/fee.module");
-const fee_user_module_1 = require("./fee-user/fee-user.module");
+const vote_user_module_1 = require("./vote-user/vote-user.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [user_module_1.UserModule,
-            mongoose_1.MongooseModule.forRoot('mongodb+srv://minhhoangzeno:Dalecarnegie@cluster0.lgkmn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+            mongoose_1.MongooseModule.forRoot('mongodb://localhost/nvh'),
             auth_module_1.AuthModule,
             blog_module_1.BlogModule,
-            category_video_module_1.CategoryVideoModule,
             video_module_1.VideoModule,
             comment_module_1.CommentModule,
             reply_module_1.ReplyModule,
-            forum_module_1.ForumModule,
-            category_forum_module_1.CategoryForumModule,
-            fee_module_1.FeeModule,
-            fee_user_module_1.FeeUserModule
+            product_module_1.ProductModule,
+            countdown_module_1.CountdownModule,
+            productcountdown_module_1.ProductcountdownModule,
+            vote_user_module_1.VoteUserModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

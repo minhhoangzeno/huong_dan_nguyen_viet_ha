@@ -4,12 +4,9 @@ import { Comment } from 'src/comment/schemas/comment.schemas';
 export declare type VideoDocument = Video & Document;
 export declare class Video {
     id: mongoose.Schema.Types.ObjectId;
-    videoId: string;
-    categoryId: string;
+    videoUrl: string;
     title: string;
     photoURL: string;
-    content: string;
-    metaDescription: string;
     createdBy: string;
     createdAt: Date;
     comments: Comment[];

@@ -1,3 +1,4 @@
+/// <reference types="mongoose" />
 import { CategoryForumService } from './category-forum.service';
 export declare class CategoryForumController {
     private categoryForumService;

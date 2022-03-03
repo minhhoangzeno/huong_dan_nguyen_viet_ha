@@ -1,4 +1,5 @@
 /// <reference types="multer" />
+/// <reference types="mongoose" />
 import { FeeUserService } from './fee-user.service';
 export declare class FeeUserController {
     private feeUserService;

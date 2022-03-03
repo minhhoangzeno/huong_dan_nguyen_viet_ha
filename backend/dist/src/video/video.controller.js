@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VideoController = void 0;
 const common_1 = require("@nestjs/common");
@@ -23,8 +24,8 @@ let VideoController = class VideoController {
     constructor(videoService) {
         this.videoService = videoService;
     }
-    async getVideo(categoryId) {
-        return this.videoService.findAll(categoryId);
+    async findAll() {
+        return this.videoService.findAll();
     }
     async uploadFile(file, body, req) {
         return this.videoService.createVideo(body, file.filename, req.user._doc.fullName);
@@ -42,12 +43,11 @@ let VideoController = class VideoController {
     }
 };
 __decorate([
-    (0, common_1.Get)(':categoryId'),
-    __param(0, (0, common_1.Param)('categoryId')),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], VideoController.prototype, "getVideo", null);
+], VideoController.prototype, "findAll", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('create'),
@@ -64,7 +64,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, video_dto_1.VideoDto, Object]),
+    __metadata("design:paramtypes", [typeof (_b = typeof Express !== "undefined" && (_a = Express.Multer) !== void 0 && _a.File) === "function" ? _b : Object, video_dto_1.VideoDto, Object]),
     __metadata("design:returntype", Promise)
 ], VideoController.prototype, "uploadFile", null);
 __decorate([
@@ -91,7 +91,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __param(2, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, video_dto_1.VideoDto, Object]),
+    __metadata("design:paramtypes", [typeof (_d = typeof Express !== "undefined" && (_c = Express.Multer) !== void 0 && _c.File) === "function" ? _d : Object, video_dto_1.VideoDto, Object]),
     __metadata("design:returntype", Promise)
 ], VideoController.prototype, "updateBlog", null);
 VideoController = __decorate([

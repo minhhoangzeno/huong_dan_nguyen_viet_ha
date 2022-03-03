@@ -11,22 +11,13 @@ export class Video {
     id: mongoose.Schema.Types.ObjectId;
 
     @Prop({ unique: true, required: true })
-    videoId: string;
-
-    @Prop({})
-    categoryId: string;
+    videoUrl: string;
 
     @Prop({ required: true })
     title: string;
 
     @Prop({ required: true })
     photoURL: string;
-
-    @Prop({ required: true })
-    content: string;
-
-    @Prop({ required: true })
-    metaDescription: string;
 
     @Prop()
     createdBy: string;
