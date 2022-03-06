@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { ProductCountDown, ProductCountDownDocument } from 'src/productcountdown/schemas/productcountdown.schemas';
+import { ProductCountDownDocument } from 'src/productcountdown/schemas/productcountdown.schemas';
 import { CountDown, CountDownDocument } from './schemas/countdown.schemas';
 export declare class CountdownService {
     private countdownModel;
@@ -8,11 +8,9 @@ export declare class CountdownService {
     findAll(): Promise<CountDown[]>;
     findById(id: any): Promise<{
         total: number;
-        products: (ProductCountDown & import("mongoose").Document<any, any, any> & {
-            _id: any;
-        })[];
+        products: any;
     }>;
-    createCountdown(title: any, products: any): Promise<CountDown>;
-    updateCountdown(title: any, products: any, id: any): Promise<CountDown>;
+    createCountdown(title: any, time: any, products: any): Promise<CountDown>;
+    updateCountdown(title: any, time: any, products: any, id: any): Promise<CountDown>;
     removeCountdown(id: any): Promise<CountDown>;
 }

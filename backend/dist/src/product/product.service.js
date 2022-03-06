@@ -25,9 +25,9 @@ let ProductService = class ProductService {
     async findAll() {
         return this.productModel.find({}).sort({ createdAt: -1 });
     }
-    async createProduct(createProductDto, photoURL, username) {
+    async createProduct(createProductDto, photoURL) {
         let date = new Date();
-        const product = new this.productModel(Object.assign(Object.assign({}, createProductDto), { photoURL, createdAt: date, author: username }));
+        const product = new this.productModel(Object.assign(Object.assign({}, createProductDto), { photoURL, createdAt: date }));
         return product.save();
     }
     async deleteById(id) {
@@ -40,11 +40,13 @@ let ProductService = class ProductService {
         let product = await this.productModel.findById(id.toString());
         if (photoURL) {
             product.title = updateProductDto.title;
+            product.author = updateProductDto.author;
             product.photoURL = photoURL;
             return product.save();
         }
         else {
             product.title = updateProductDto.title;
+            product.author = updateProductDto.author;
             return product.save();
         }
     }

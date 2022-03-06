@@ -5,7 +5,7 @@ export declare class ProductService {
     private productModel;
     constructor(productModel: Model<ProductDocument>);
     findAll(): Promise<Product[]>;
-    createProduct(createProductDto: ProductDto, photoURL: string, username: string): Promise<Product>;
+    createProduct(createProductDto: ProductDto, photoURL: string): Promise<Product>;
     deleteById(id: string): Promise<void>;
     updateById(id: string, updateProductDto: ProductDto, photoURL?: string): Promise<Product>;
 }

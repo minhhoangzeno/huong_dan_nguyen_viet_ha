@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { CountdownService } from './countdown.service';
 
@@ -12,7 +12,7 @@ export class CountdownController {
         return this.countdownService.findAll()
     }
 
-    @Get(':id')
+    @Get('detail/:id')
     async getDetail(@Param('id') id) {
         return this.countdownService.findById(id);
     }
@@ -20,17 +20,17 @@ export class CountdownController {
     @UseGuards(JwtAuthGuard)
     @Post('create')
     async createCountdown(@Body() body) {
-        return this.countdownService.createCountdown(body.title, body.products);
+        return this.countdownService.createCountdown(body.title,body.time, body.products);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post('update/:id')
+    @Post('edit/:id')
     async updateCountdown(@Param('id') id, @Body() body) {
-        return this.countdownService.updateCountdown(body.title, body.products, id);
+        return this.countdownService.updateCountdown(body.title,body.time, body.products, id);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post('remove/:id')
+    @Delete('delete/:id')
     async removeCountdown(@Param('id') id) {
         return this.countdownService.removeCountdown(id);
     }

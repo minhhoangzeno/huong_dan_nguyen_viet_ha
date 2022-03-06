@@ -27,10 +27,10 @@ let CountdownController = class CountdownController {
         return this.countdownService.findById(id);
     }
     async createCountdown(body) {
-        return this.countdownService.createCountdown(body.title, body.products);
+        return this.countdownService.createCountdown(body.title, body.time, body.products);
     }
     async updateCountdown(id, body) {
-        return this.countdownService.updateCountdown(body.title, body.products, id);
+        return this.countdownService.updateCountdown(body.title, body.time, body.products, id);
     }
     async removeCountdown(id) {
         return this.countdownService.removeCountdown(id);
@@ -43,7 +43,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CountdownController.prototype, "getCountdowns", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('detail/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -59,7 +59,7 @@ __decorate([
 ], CountdownController.prototype, "createCountdown", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('update/:id'),
+    (0, common_1.Post)('edit/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -68,7 +68,7 @@ __decorate([
 ], CountdownController.prototype, "updateCountdown", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('remove/:id'),
+    (0, common_1.Delete)('delete/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

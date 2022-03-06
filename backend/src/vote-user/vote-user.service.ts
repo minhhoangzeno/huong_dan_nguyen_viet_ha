@@ -8,7 +8,7 @@ export class VoteUserService {
     constructor(@InjectModel(VoteUser.name) private voteUserModel: Model<VoteUserDocument>) { }
 
     async findAll(){
-        return this.voteUserModel.find();
+        return this.voteUserModel.find().populate("user","fullName photoURL","User");
     }
 
 }

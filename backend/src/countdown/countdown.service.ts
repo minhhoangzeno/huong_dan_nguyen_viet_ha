@@ -17,20 +17,29 @@ export class CountdownService {
     async findById(id) {
         let countdown = await this.countdownModel.findById(id);
         let total = countdown.total.length;
-        let products = await this.productCountDownModel.find({ '_id': { $in: [countdown.total] } }).populate("product", "title author photoURL", "Product");
+        let resp = [];
+        countdown.total.forEach(item => {
+            resp.push(item.toString())
+        })
+        let products;
+        if (total > 0) {
+            products = await this.productCountDownModel.find({ _id: { $in: resp } }).populate("product","title author","Product")
+        }
         return { total, products }
+
 
     }
 
-    async createCountdown(title, products): Promise<CountDown> {
+    async createCountdown(title, time, products): Promise<CountDown> {
         let date = new Date();
-        const countdown = new this.countdownModel({ title, products, createdAt: date })
+        const countdown = new this.countdownModel({ title, time, products, createdAt: date })
         return countdown.save();
     }
 
-    async updateCountdown(title, products, id): Promise<CountDown> {
+    async updateCountdown(title, time, products, id): Promise<CountDown> {
         let countdown = await this.countdownModel.findById(id.toString());
         countdown.title = title;
+        countdown.time = time;
         countdown.products = products;
         return countdown.save();
     }

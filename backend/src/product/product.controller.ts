@@ -26,8 +26,8 @@ export class ProductController {
             }
         })
     }))
-    async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body: ProductDto, @Request() req) {
-        return this.productService.createProduct(body, file.filename, req.user._doc.fullName)
+    async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body: ProductDto) {
+        return this.productService.createProduct(body, file.filename)
     }
 
     @UseGuards(JwtAuthGuard)
@@ -38,7 +38,7 @@ export class ProductController {
 
    
     @UseGuards(JwtAuthGuard)
-    @Post('update/:id')
+    @Post('edit/:id')
     @UseInterceptors(FileInterceptor('file', {
         storage: diskStorage({
             destination: './uploads',

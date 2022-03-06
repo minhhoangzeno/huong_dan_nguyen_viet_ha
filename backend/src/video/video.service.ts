@@ -15,6 +15,10 @@ export class VideoService {
         return this.videoModel.find();
     }
 
+    async findById(id) {
+        return this.videoModel.findById(id.toString());
+    }
+
     async createVideo(createVideo: VideoDto, photoURL: string, fullName: string): Promise<Video> {
         let date = new Date();
         const video = new this.videoModel({ ...createVideo, photoURL, createdAt: date, createdBy: fullName })

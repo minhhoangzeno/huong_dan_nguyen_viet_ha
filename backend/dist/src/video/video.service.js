@@ -27,6 +27,9 @@ let VideoService = class VideoService {
     async findAll() {
         return this.videoModel.find();
     }
+    async findById(id) {
+        return this.videoModel.findById(id.toString());
+    }
     async createVideo(createVideo, photoURL, fullName) {
         let date = new Date();
         const video = new this.videoModel(Object.assign(Object.assign({}, createVideo), { photoURL, createdAt: date, createdBy: fullName }));

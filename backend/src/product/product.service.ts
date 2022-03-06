@@ -12,15 +12,11 @@ export class ProductService {
         return this.productModel.find({}).sort({ createdAt: -1 })
     }
 
-    async createProduct(createProductDto: ProductDto, photoURL: string, username: string): Promise<Product> {
+    async createProduct(createProductDto: ProductDto, photoURL: string): Promise<Product> {
         let date = new Date();
-        const product = new this.productModel({ ...createProductDto, photoURL, createdAt: date, author: username })
+        const product = new this.productModel({ ...createProductDto, photoURL, createdAt: date })
         return product.save();
     }
-
-    // async findById(id: string): Promise<Blog> {
-    //     return await this.blogModel.findById(id)
-    // }
 
     async deleteById(id: string) {
         let product = await this.productModel.findById(id);
@@ -33,10 +29,12 @@ export class ProductService {
         let product = await this.productModel.findById(id.toString())
         if (photoURL) {
             product.title = updateProductDto.title;
+            product.author = updateProductDto.author;
             product.photoURL = photoURL;
             return product.save();
         } else {
             product.title = updateProductDto.title;
+            product.author = updateProductDto.author;
             return product.save();
         }
 

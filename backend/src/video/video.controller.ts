@@ -14,6 +14,11 @@ export class VideoController {
        return this.videoService.findAll();
    }
 
+   @Get('detail/:id')
+   async findById(@Param('id') id){
+       return this.videoService.findById(id);
+   }
+
     @UseGuards(JwtAuthGuard)
     @Post('create')
     @UseInterceptors(FileInterceptor('file', {
@@ -37,7 +42,7 @@ export class VideoController {
 
 
     @UseGuards(JwtAuthGuard)
-    @Post('update/:id')
+    @Post('edit/:id')
     @UseInterceptors(FileInterceptor('file', {
         storage: diskStorage({
             destination: './uploads',

@@ -27,8 +27,8 @@ let ProductController = class ProductController {
     async getProducts() {
         return this.productService.findAll();
     }
-    async uploadFile(file, body, req) {
-        return this.productService.createProduct(body, file.filename, req.user._doc.fullName);
+    async uploadFile(file, body) {
+        return this.productService.createProduct(body, file.filename);
     }
     async removeProduct(id) {
         return this.productService.deleteById(id);
@@ -62,9 +62,8 @@ __decorate([
     })),
     __param(0, (0, common_1.UploadedFile)()),
     __param(1, (0, common_1.Body)()),
-    __param(2, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_b = typeof Express !== "undefined" && (_a = Express.Multer) !== void 0 && _a.File) === "function" ? _b : Object, product_dto_1.ProductDto, Object]),
+    __metadata("design:paramtypes", [typeof (_b = typeof Express !== "undefined" && (_a = Express.Multer) !== void 0 && _a.File) === "function" ? _b : Object, product_dto_1.ProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "uploadFile", null);
 __decorate([
@@ -77,7 +76,7 @@ __decorate([
 ], ProductController.prototype, "removeProduct", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('update/:id'),
+    (0, common_1.Post)('edit/:id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: './uploads',

@@ -9,6 +9,9 @@ export declare class VideoService {
     findAll(): Promise<(Video & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
+    findById(id: any): Promise<Video & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }>;
     createVideo(createVideo: VideoDto, photoURL: string, fullName: string): Promise<Video>;
     deleteById(id: string): Promise<void>;
     updateById(id: string, videoDto: VideoDto, photoURL?: string): Promise<Video>;

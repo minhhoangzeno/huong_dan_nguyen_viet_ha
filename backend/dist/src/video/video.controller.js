@@ -27,6 +27,9 @@ let VideoController = class VideoController {
     async findAll() {
         return this.videoService.findAll();
     }
+    async findById(id) {
+        return this.videoService.findById(id);
+    }
     async uploadFile(file, body, req) {
         return this.videoService.createVideo(body, file.filename, req.user._doc.fullName);
     }
@@ -48,6 +51,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], VideoController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('detail/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], VideoController.prototype, "findById", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('create'),
@@ -77,7 +87,7 @@ __decorate([
 ], VideoController.prototype, "deleteVideo", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('update/:id'),
+    (0, common_1.Post)('edit/:id'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
             destination: './uploads',
