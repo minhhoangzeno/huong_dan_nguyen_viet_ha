@@ -16,8 +16,8 @@ export class VoteUser {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     user: User;
 
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ProductCountDown' }] })
-    votes: ProductCountDown[];
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ProductCountDown' })
+    productCountDown: ProductCountDown;
 
     @Prop()
     createdAt: Date;

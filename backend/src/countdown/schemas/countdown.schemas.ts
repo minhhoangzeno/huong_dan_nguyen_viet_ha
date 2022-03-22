@@ -15,7 +15,10 @@ export class CountDown {
     title: string;
 
     @Prop()
-    time: Date;
+    startDate: Date;
+
+    @Prop()
+    endDate: Date;
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] })
     products: Product[];
@@ -28,3 +31,4 @@ export class CountDown {
 }
 
 export const CountDownSchema = SchemaFactory.createForClass(CountDown);
+

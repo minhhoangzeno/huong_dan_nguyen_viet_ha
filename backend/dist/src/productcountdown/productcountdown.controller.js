@@ -26,6 +26,9 @@ let ProductcountdownController = class ProductcountdownController {
     async createCountdown(body, req) {
         return this.productcountdownService.createProductCountdown(body.countdown, req.user._doc._id, body.product);
     }
+    async checkUserVoted(body, req) {
+        return this.productcountdownService.checkUserVoted(body.countdown, body.product, req.user._doc._id);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -42,6 +45,15 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ProductcountdownController.prototype, "createCountdown", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)('voted/user'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], ProductcountdownController.prototype, "checkUserVoted", null);
 ProductcountdownController = __decorate([
     (0, common_1.Controller)('productcountdown'),
     __metadata("design:paramtypes", [productcountdown_service_1.ProductcountdownService])

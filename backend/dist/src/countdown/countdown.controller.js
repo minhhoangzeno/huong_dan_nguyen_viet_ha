@@ -23,14 +23,17 @@ let CountdownController = class CountdownController {
     async getCountdowns() {
         return this.countdownService.findAll();
     }
+    async getCountdownsByDate() {
+        return this.countdownService.findByDate();
+    }
     async getDetail(id) {
         return this.countdownService.findById(id);
     }
     async createCountdown(body) {
-        return this.countdownService.createCountdown(body.title, body.time, body.products);
+        return this.countdownService.createCountdown(body.title, body.startDate, body.endDate, body.products);
     }
     async updateCountdown(id, body) {
-        return this.countdownService.updateCountdown(body.title, body.time, body.products, id);
+        return this.countdownService.updateCountdown(body.title, body.startDate, body.endDate, body.products, id);
     }
     async removeCountdown(id) {
         return this.countdownService.removeCountdown(id);
@@ -42,6 +45,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CountdownController.prototype, "getCountdowns", null);
+__decorate([
+    (0, common_1.Get)('byDate'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CountdownController.prototype, "getCountdownsByDate", null);
 __decorate([
     (0, common_1.Get)('detail/:id'),
     __param(0, (0, common_1.Param)('id')),

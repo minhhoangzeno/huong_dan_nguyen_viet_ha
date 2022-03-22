@@ -6,6 +6,7 @@ import videoReducer from './videoSlice';
 import productReducer from './productSlice';
 import countdownReducer from './countdownSlice';
 import dashboardReducer from './dashboardSlice';
+import userReducer from './userSlice';
 //USE TOOLKIT
 const rootReducer = {
     reducer: {
@@ -15,7 +16,8 @@ const rootReducer = {
         video: videoReducer,
         product: productReducer,
         countdown: countdownReducer,
-        dashboard: dashboardReducer
+        dashboard: dashboardReducer,
+        user: userReducer
 
     },
 };

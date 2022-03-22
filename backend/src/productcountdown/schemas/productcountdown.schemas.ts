@@ -12,6 +12,9 @@ export class ProductCountDown {
     @Prop()
     id: mongoose.Schema.Types.ObjectId;
 
+    @Prop()
+    title: string;
+
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'CountDown' })
     countdown: CountDown;
 

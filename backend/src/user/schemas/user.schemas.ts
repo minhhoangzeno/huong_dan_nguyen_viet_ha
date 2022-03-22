@@ -32,13 +32,13 @@ export class User {
     @Prop({ required: true })
     lastName: string;
 
-    @Prop({default: Role.User })
-    roles: Role[]
+    @Prop({ default: "user" })
+    roles: string;
 
     @Prop()
     fullName: string;
 
-    @Prop()
+    @Prop({ default: null })
     photoURL: string;
 
 }

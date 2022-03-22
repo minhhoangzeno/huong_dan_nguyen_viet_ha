@@ -9,4 +9,5 @@ export declare class ProductcountdownService {
     constructor(productcountdownModel: Model<ProductCountDownDocument>, countdownModel: Model<CountDownDocument>, voteUserModel: Model<VoteUserDocument>);
     findAll(): Promise<ProductCountDown[]>;
     createProductCountdown(countdown: any, user: any, product: any): Promise<ProductCountDown>;
+    checkUserVoted(countdownId: any, productId: any, userId: any): Promise<boolean>;
 }

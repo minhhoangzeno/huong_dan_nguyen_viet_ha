@@ -1,0 +1,244 @@
+@import './common.scss';
+
+.countdown-page {
+    width: 100%;
+    padding: 100px 0;
+    // background-color: rebeccapurple;
+    .big-wrapper {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .title {
+        font-size: 72px;
+        color: #000;
+        font-weight: bold;
+        margin-bottom: 60px;
+    }
+}
+.countdown-clock {
+    width: 100%;
+    height: 300px;
+    background-image: url("https://image.mwave.me/common/pattern_asset/Desktop/Asset5_Desktop/Asset5_Purple_Dark_Desktop.jpg?w=1272&h=300&q=90");
+    margin-bottom: 40px;
+}
+.ranking {
+    margin-bottom: 60px;
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        .title-section {
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .current-time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1.36;
+            }
+        }
+    }
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        &--item{
+            margin-bottom: 15px;
+        }
+        &--col {
+            width: calc((100% - 20px) / 2);
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+        .item-ranking {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            padding: 10px 0;
+            // justify-content: space-around;
+            border-bottom: 1px solid #000;
+            .ranking-number {
+                margin-right: 20px;
+                font-size: 35px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .ranking-status {
+                margin-right: 20px;
+                font-size: 16px;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ec0c6e;
+            }
+            .ranking-thumbnail {
+                max-height: 84px;
+                max-width: 84px;
+                margin-right: 20px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            .ranking-name {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .song {
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #1c1c1c;
+                    font-size: 20px;
+                    font-weight: 700;
+                    line-height: 1.28;
+                }
+                .artist {
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 1.36;
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #333;
+                    margin-top: 2px;
+                }
+            }
+        }
+    }
+}
+
+.voting {
+    .notice {
+        padding: 40px 0;
+    }
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        .title-section {
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .current-time {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1.36;
+            }
+        }
+    }
+    &__list {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 20px;
+        &--item {
+            background-color: #f7f7f7;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            cursor: pointer;
+            img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover;
+            }
+            .item-image {
+                height: 300px;
+                width: 100%;
+                position: relative;
+                &:hover{
+                    .modal-voting{
+                        // display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 1;
+                        visibility: visible;
+                        transition: .4s;
+                        
+                    }
+                }
+                .modal-voting{
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: .4s;
+                    .dark-bg{
+                        width: 100%;
+                        height: 100%;
+                        background-color: #000;
+                        opacity: .4 !important;
+                        z-index: 1;
+                    }
+                    .voting-btn{
+                        padding: 10.5px 24px;
+                        color: #fff;
+                        font-size: 14px;
+                        font-weight: 700;
+                        background-color: #ec0c6e;
+                        z-index: 1000;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        transition: .5s;
+                        transform: .2s ease-in-out;
+                        transition-duration: .5s;
+                        &:hover{
+                            background-color: #ED3C84;
+                            color: #e4e4e4;
+                        }
+                    }
+
+                }
+            }
+            .item-content {
+                padding: 5px 8px;
+                height: 120px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .artist {
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 1.44;
+                }
+                .name-song {
+                    font-size: 22px;
+                    font-weight: 600;
+                    line-height: 1.28;
+                    flex-wrap: wrap;
+                    width: 225px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    margin-top: 6px;
+                }
+            }
+        }
+    }
+}

@@ -6,7 +6,8 @@ export declare type CountDownDocument = CountDown & Document;
 export declare class CountDown {
     id: mongoose.Schema.Types.ObjectId;
     title: string;
-    time: Date;
+    startDate: Date;
+    endDate: Date;
     products: Product[];
     total: ProductCountDown[];
     createdAt: Date;

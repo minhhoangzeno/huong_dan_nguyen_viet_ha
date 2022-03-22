@@ -8,18 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose = require("mongoose");
 const user_status_enum_1 = require("../enum/user-status.enum");
-const role_enum_1 = require("../../role/role.enum");
 let User = class User {
 };
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", typeof (_c = typeof mongoose !== "undefined" && (_a = mongoose.Schema) !== void 0 && (_b = _a.Types) !== void 0 && _b.ObjectId) === "function" ? _c : Object)
+    __metadata("design:type", mongoose.Schema.Types.ObjectId)
 ], User.prototype, "id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ unique: true, required: true }),
@@ -50,15 +48,15 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "lastName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: role_enum_1.Role.User }),
-    __metadata("design:type", Array)
+    (0, mongoose_1.Prop)({ default: "user" }),
+    __metadata("design:type", String)
 ], User.prototype, "roles", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], User.prototype, "fullName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ default: null }),
     __metadata("design:type", String)
 ], User.prototype, "photoURL", void 0);
 User = __decorate([

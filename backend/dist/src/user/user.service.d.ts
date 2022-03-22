@@ -26,4 +26,7 @@ export declare class UserService {
     updateById(user: any, updateUserDto: any, photoURL?: string): Promise<User & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;
+    roleUser(id: any, role: any): Promise<User & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }>;
 }

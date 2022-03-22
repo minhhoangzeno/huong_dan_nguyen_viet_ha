@@ -6,6 +6,7 @@ import { User } from 'src/user/schemas/user.schemas';
 export declare type ProductCountDownDocument = ProductCountDown & Document;
 export declare class ProductCountDown {
     id: mongoose.Schema.Types.ObjectId;
+    title: string;
     countdown: CountDown;
     votes: User[];
     product: Product;

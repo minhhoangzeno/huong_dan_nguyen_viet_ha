@@ -65,4 +65,10 @@ export class UserController {
             return this.userService.updateById(req.user._doc, body)
         }
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('role')
+    async roleUser(@Body() body){
+        return this.userService.roleUser(body.id,body.role);
+    }
 }

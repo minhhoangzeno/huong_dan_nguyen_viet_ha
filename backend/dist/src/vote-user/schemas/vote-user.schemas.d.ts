@@ -6,7 +6,7 @@ export declare type VoteUserDocument = VoteUser & Document;
 export declare class VoteUser {
     id: mongoose.Schema.Types.ObjectId;
     user: User;
-    votes: ProductCountDown[];
+    productCountDown: ProductCountDown;
     createdAt: Date;
 }
 export declare const VoteUserSchema: mongoose.Schema<Document<VoteUser, any, any>, mongoose.Model<Document<VoteUser, any, any>, any, any, any>, any, any>;

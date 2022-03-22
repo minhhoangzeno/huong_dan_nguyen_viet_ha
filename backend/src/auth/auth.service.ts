@@ -24,7 +24,6 @@ export class AuthService {
         } else {
             throw new HttpException('Username is incorrect!', 201)
         }
-
     }
 
     async login(user: any) {

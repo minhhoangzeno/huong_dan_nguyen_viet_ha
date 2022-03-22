@@ -17,4 +17,10 @@ export class ProductcountdownController {
     async createCountdown(@Body() body, @Request() req) {
         return this.productcountdownService.createProductCountdown(body.countdown, req.user._doc._id, body.product);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('voted/user')
+    async checkUserVoted(@Body() body, @Request() req) {
+        return this.productcountdownService.checkUserVoted(body.countdown, body.product, req.user._doc._id,);
+    }
 }

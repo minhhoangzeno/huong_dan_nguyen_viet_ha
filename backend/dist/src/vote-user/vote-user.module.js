@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VoteUserModule = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
+const countdown_schemas_1 = require("../countdown/schemas/countdown.schemas");
+const product_schemas_1 = require("../product/schemas/product.schemas");
+const productcountdown_schemas_1 = require("../productcountdown/schemas/productcountdown.schemas");
 const vote_user_schemas_1 = require("./schemas/vote-user.schemas");
 const vote_user_controller_1 = require("./vote-user.controller");
 const vote_user_service_1 = require("./vote-user.service");
@@ -18,6 +21,9 @@ VoteUserModule = __decorate([
     (0, common_1.Module)({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: vote_user_schemas_1.VoteUser.name, schema: vote_user_schemas_1.VoteUserSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: productcountdown_schemas_1.ProductCountDown.name, schema: productcountdown_schemas_1.ProductCountDownSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: countdown_schemas_1.CountDown.name, schema: countdown_schemas_1.CountDownSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: product_schemas_1.Product.name, schema: product_schemas_1.ProductSchema }]),
         ],
         controllers: [vote_user_controller_1.VoteUserController],
         providers: [vote_user_service_1.VoteUserService]

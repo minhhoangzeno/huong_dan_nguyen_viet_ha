@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VideoService = void 0;
 const common_1 = require("@nestjs/common");
@@ -59,7 +58,8 @@ let VideoService = class VideoService {
 VideoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(video_schemas_1.Video.name)),
-    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object, comment_service_1.CommentService])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        comment_service_1.CommentService])
 ], VideoService);
 exports.VideoService = VideoService;
 //# sourceMappingURL=video.service.js.map

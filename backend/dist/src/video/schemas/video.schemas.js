@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VideoSchema = exports.Video = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
@@ -17,7 +16,7 @@ let Video = class Video {
 };
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", typeof (_c = typeof mongoose !== "undefined" && (_a = mongoose.Schema) !== void 0 && (_b = _a.Types) !== void 0 && _b.ObjectId) === "function" ? _c : Object)
+    __metadata("design:type", mongoose.Schema.Types.ObjectId)
 ], Video.prototype, "id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ unique: true, required: true }),
@@ -37,7 +36,7 @@ __decorate([
 ], Video.prototype, "createdBy", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", typeof (_d = typeof Date !== "undefined" && Date) === "function" ? _d : Object)
+    __metadata("design:type", Date)
 ], Video.prototype, "createdAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] }),

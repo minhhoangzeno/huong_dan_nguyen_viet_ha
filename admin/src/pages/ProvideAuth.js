@@ -39,6 +39,7 @@ import ProductEdit from "./product/ProductEdit";
 import Settings from './Settings';
 import BootstrapTables from "./tables/BootstrapTables";
 import Transactions from "./Transactions";
+import User from "./user/User";
 import Video from "./video/Video";
 import VideoAdd from "./video/VideoAdd";
 import VideoDetail from "./video/VideoDetail";
@@ -130,6 +131,8 @@ export default function ProvideAuth() {
             <RouteWithSidebar exact path={Routes.Countdown.path} component={Countdown} />
             <RouteWithSidebar exact path={Routes.CountdownAdd.path} component={CountdownAdd} />
             <RouteWithSidebar exact path={Routes.CountdownEdit.path} component={CountdownEdit} />
+
+            <RouteWithSidebar exact path={Routes.User.path} component={User} />
 
             <Redirect from="/" to="/" />
         </Switch>

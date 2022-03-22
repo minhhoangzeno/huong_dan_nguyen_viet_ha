@@ -95,7 +95,7 @@ export class UserService {
                 user.save();
                 throw new HttpException("Thay đổi mật khẩu thành công", 200)
             }
-        }else{
+        } else {
             throw new HttpException("Mật khẩu cũ chưa đúng!", 201)
         }
 
@@ -176,6 +176,11 @@ export class UserService {
             modelUser.fullName = `${updateUserDto.firstName} ${updateUserDto.lastName}`;
         }
         return modelUser.save();
+    }
 
+    async roleUser(id, role) {
+        const user = await this.userModel.findById(id.toString());
+        user.roles = role;
+        return user.save();
     }
 }

@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductcountdownService = void 0;
 const common_1 = require("@nestjs/common");
@@ -30,25 +29,34 @@ let ProductcountdownService = class ProductcountdownService {
         return this.productcountdownModel.find({});
     }
     async createProductCountdown(countdown, user, product) {
-        let date = new Date();
-        const productcountdown = new this.productcountdownModel({ countdown, product, createdAt: date });
-        productcountdown.votes.push(user);
-        let countdownProduct = await this.countdownModel.findById(countdown.toString());
-        let voteUser = await this.voteUserModel.findOne({ user: user.toString() });
-        if (voteUser) {
-            voteUser.votes.push(productcountdown._id);
+        const productcountdown = await this.productcountdownModel.findOne({ countdown, product });
+        if (productcountdown) {
+            productcountdown.votes.push(user);
+            let voteUser = new this.voteUserModel({
+                createdAt: new Date(),
+                user: user,
+                productCountDown: productcountdown._id
+            });
             voteUser.save();
+            return productcountdown.save();
+        }
+    }
+    async checkUserVoted(countdownId, productId, userId) {
+        let productcountdown = await this.productcountdownModel.findOne({
+            countdown: countdownId,
+            product: productId
+        });
+        if (productcountdown) {
+            if (productcountdown.votes.includes(userId)) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         else {
-            let date = new Date();
-            let createVoteUser = new this.voteUserModel({ user: user, votes: [productcountdown._id], createdAt: date });
-            createVoteUser.save();
+            return false;
         }
-        if (countdownProduct) {
-            countdownProduct.total.push(productcountdown._id);
-            countdownProduct.save();
-        }
-        return productcountdown.save();
     }
 };
 ProductcountdownService = __decorate([
@@ -56,7 +64,9 @@ ProductcountdownService = __decorate([
     __param(0, (0, mongoose_1.InjectModel)(productcountdown_schemas_1.ProductCountDown.name)),
     __param(1, (0, mongoose_1.InjectModel)(countdown_schemas_1.CountDown.name)),
     __param(2, (0, mongoose_1.InjectModel)(vote_user_schemas_1.VoteUser.name)),
-    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object, typeof (_b = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _b : Object, typeof (_c = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _c : Object])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model,
+        mongoose_2.Model])
 ], ProductcountdownService);
 exports.ProductcountdownService = ProductcountdownService;
 //# sourceMappingURL=productcountdown.service.js.map

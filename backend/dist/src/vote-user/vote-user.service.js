@@ -11,25 +11,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VoteUserService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const productcountdown_schemas_1 = require("../productcountdown/schemas/productcountdown.schemas");
 const vote_user_schemas_1 = require("./schemas/vote-user.schemas");
 let VoteUserService = class VoteUserService {
-    constructor(voteUserModel) {
+    constructor(voteUserModel, productCountdownModel) {
         this.voteUserModel = voteUserModel;
+        this.productCountdownModel = productCountdownModel;
     }
     async findAll() {
         return this.voteUserModel.find().populate("user", "fullName photoURL", "User");
+    }
+    async findById(userId) {
+        let voteUsers = await this.voteUserModel.find({ user: userId }).populate({
+            path: "productCountDown",
+            select: "product countdown title",
+            model: "ProductCountDown",
+            populate: {
+                path: "product",
+                select: "title author",
+                model: "Product"
+            },
+        });
+        return voteUsers;
     }
 };
 VoteUserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(vote_user_schemas_1.VoteUser.name)),
-    __metadata("design:paramtypes", [typeof (_a = typeof mongoose_2.Model !== "undefined" && mongoose_2.Model) === "function" ? _a : Object])
+    __param(1, (0, mongoose_1.InjectModel)(productcountdown_schemas_1.ProductCountDown.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        mongoose_2.Model])
 ], VoteUserService);
 exports.VoteUserService = VoteUserService;
 //# sourceMappingURL=vote-user.service.js.map
