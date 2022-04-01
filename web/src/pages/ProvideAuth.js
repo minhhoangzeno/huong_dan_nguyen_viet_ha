@@ -117,13 +117,13 @@ export default function ProvideAuth() {
 
             <RouteWithSidebar exact path={Routes.Blog.path} component={Blog} />
             <RouteWithSidebar exact path={Routes.BlogAdd.path} component={BlogAdd} />
-            <RouteWithSidebar exact path={Routes.BlogDetail.path} component={BlogDetail} />
+            <Route exact path={Routes.BlogDetail.path} component={BlogDetail} />
             <RouteWithSidebar exact path={Routes.BlogEdit.path} component={BlogEdit} />
           
 
             <RouteWithSidebar exact path={Routes.Video.path} component={Video} />
             <RouteWithSidebar exact path={Routes.VideoAdd.path} component={VideoAdd} />
-            <RouteWithSidebar exact path={Routes.VideoDetail.path} component={VideoDetail} />
+            <Route exact path={Routes.VideoDetail.path} component={VideoDetail} />
             <RouteWithSidebar exact path={Routes.VideoEdit.path} component={VideoEdit} />
 
             <RouteWithSidebar exact path={Routes.Product.path} component={Product} />

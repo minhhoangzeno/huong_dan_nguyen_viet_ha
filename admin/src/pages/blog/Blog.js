@@ -1,24 +1,26 @@
 import { Card, Col, Container, Row, Button } from '@themesberg/react-bootstrap';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { SERVER } from '../../apis/API';
 import { deleteBlogThunk, getBlogThunk } from '../../redux/blogSlice';
 import { Routes } from "../../routes";
-
+import Pagination from "react-js-pagination";
+import '../../scss/pagination.scss'
 export default () => {
     let history = useHistory();
     let blog = useSelector(state => state.blog.data);
     let { addToast } = useToasts()
     let dispatch = useDispatch();
+    const [activePage, setActivePage] = useState(1);
     useEffect(() => {
-        dispatch(getBlogThunk()) // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        dispatch(getBlogThunk(6 * (activePage - 1))) // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activePage]);
 
     let deleteBlog = async (blogId) => {
         await dispatch(deleteBlogThunk(blogId));
-        dispatch(getBlogThunk());
+        dispatch(getBlogThunk(0));
         addToast("Delete Success", { appearance: 'success', autoDismiss: 1000 })
     }
 
@@ -42,18 +44,27 @@ export default () => {
                 </Col>
             </Row>
             <Row>
-                {blog && blog.map((blogItem, index) => {
+                {blog && blog.data.map((blogItem, index) => {
                     return (
-                        <BlogItem blog={blogItem} key={index} deleteBlog={deleteBlog} 
-                        routerDetailBlog={routerDetailBlog} routerEditBlog={routerEditBlog} />
+                        <BlogItem blog={blogItem} key={index} deleteBlog={deleteBlog}
+                            routerDetailBlog={routerDetailBlog} routerEditBlog={routerEditBlog} />
                     )
                 })}
             </Row>
+            <div className='wrapper-paginate' >
+                {blog && <Pagination
+                    activePage={activePage}
+                    itemsCountPerPage={6}
+                    totalItemsCount={blog?.totalPage}
+                    pageRangeDisplayed={3}
+                    onChange={value => setActivePage(value)}
+                />}
+            </div>
         </Container>
     )
 }
 
-function BlogItem({ blog, deleteBlog, routerDetailBlog,routerEditBlog }) {
+function BlogItem({ blog, deleteBlog, routerDetailBlog, routerEditBlog }) {
     return (
         <Col>
             <Card style={{ width: '18rem' }} className="mt-4" >

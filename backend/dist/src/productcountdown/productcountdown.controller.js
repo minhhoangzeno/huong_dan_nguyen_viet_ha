@@ -27,7 +27,7 @@ let ProductcountdownController = class ProductcountdownController {
         return this.productcountdownService.createProductCountdown(body.countdown, req.user._doc._id, body.product);
     }
     async checkUserVoted(body, req) {
-        return this.productcountdownService.checkUserVoted(body.countdown, body.product, req.user._doc._id);
+        return this.productcountdownService.checkUserVoted(body.countdown, req.user._doc._id);
     }
 };
 __decorate([

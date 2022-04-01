@@ -30,6 +30,7 @@ export const getCountdownThunk = () => async (dispatch) => {
     try {
         const data = await getCountdown();
         dispatch(setData(data))
+        return data;
     } catch (err) {
         dispatch(setError(err))
     }

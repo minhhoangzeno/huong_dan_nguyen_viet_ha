@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CountDown, CountDownDocument } from 'src/countdown/schemas/countdown.schemas';
@@ -17,44 +17,32 @@ export class ProductcountdownService {
     }
 
     async createProductCountdown(countdown, user, product): Promise<ProductCountDown> {
-        const productcountdown = await this.productcountdownModel.findOne({ countdown, product });
-        if (productcountdown) {
-            productcountdown.votes.push(user);
-            let voteUser = new this.voteUserModel({
-                createdAt: new Date(),
-                user:user,
-                productCountDown: productcountdown._id
-            })
-            voteUser.save();
-            // let voteUser = await this.voteUserModel.findOne({ user: user.toString() });
-            // if (voteUser) {
-            //     let date = new Date();
-            //     voteUser.createdAt.push(date)
-            //     voteUser.votes.push(productcountdown._id);
-            //     voteUser.save();
-            // } else {
-            //     let date = new Date();
-            //     let createVoteUser = new this.voteUserModel({ user: user, votes: [productcountdown._id] });
-            //     createVoteUser.createdAt.push(date)
-            //     createVoteUser.save();
-            // }
-            return productcountdown.save();
+        let countdownDb = await this.countdownModel.findById(countdown);
+        if (countdownDb.votes.includes(user)) {
+            throw new HttpException('Error', 201)
+        } else {
+            countdownDb.votes.push(user);
+            countdownDb.save();
+            const productcountdown = await this.productcountdownModel.findOne({ countdown, product });
+            if (productcountdown) {
+                productcountdown.votes.push(user);
+                let voteUser = new this.voteUserModel({
+                    createdAt: new Date(),
+                    user: user,
+                    productCountDown: productcountdown._id
+                })
+                voteUser.save();
+                return productcountdown.save();
+            }
         }
     }
 
-    async checkUserVoted(countdownId, productId, userId) {
-        let productcountdown = await this.productcountdownModel.findOne({
-            countdown: countdownId,
-            product: productId
-        });
-        if (productcountdown) {
-            if (productcountdown.votes.includes(userId)) {
-                return true;
-            } else {
-                return false;
-            }
+    async checkUserVoted(countdownId, userId) {
+        let countdown = await this.countdownModel.findById(countdownId);
+        if (countdown.votes.includes(userId)) {
+            return true
         } else {
-            return false;
+            return false
         }
     }
 

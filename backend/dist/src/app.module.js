@@ -17,10 +17,10 @@ const comment_module_1 = require("./comment/comment.module");
 const countdown_module_1 = require("./countdown/countdown.module");
 const product_module_1 = require("./product/product.module");
 const productcountdown_module_1 = require("./productcountdown/productcountdown.module");
-const reply_module_1 = require("./reply/reply.module");
 const user_module_1 = require("./user/user.module");
 const video_module_1 = require("./video/video.module");
 const vote_user_module_1 = require("./vote-user/vote-user.module");
+const feedback_module_1 = require("./feedback/feedback.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,11 +31,11 @@ AppModule = __decorate([
             blog_module_1.BlogModule,
             video_module_1.VideoModule,
             comment_module_1.CommentModule,
-            reply_module_1.ReplyModule,
             product_module_1.ProductModule,
             countdown_module_1.CountdownModule,
             productcountdown_module_1.ProductcountdownModule,
-            vote_user_module_1.VoteUserModule
+            vote_user_module_1.VoteUserModule,
+            feedback_module_1.FeedbackModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

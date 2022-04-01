@@ -21,6 +21,6 @@ export class ProductcountdownController {
     @UseGuards(JwtAuthGuard)
     @Post('voted/user')
     async checkUserVoted(@Body() body, @Request() req) {
-        return this.productcountdownService.checkUserVoted(body.countdown, body.product, req.user._doc._id,);
+        return this.productcountdownService.checkUserVoted(body.countdown, req.user._doc._id,);
     }
 }

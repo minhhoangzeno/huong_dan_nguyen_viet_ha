@@ -1,4 +1,3 @@
-/// <reference types="mongoose" />
 import { VoteUserService } from './vote-user.service';
 export declare class VoteUserController {
     private voteuserService;

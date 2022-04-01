@@ -10,10 +10,21 @@ export class BlogController {
     constructor(private blogService: BlogService) { }
 
 
-    @Get()
-    async getBlogs() {
-        return this.blogService.findAll()
+    @Get(':skipNumber')
+    async getBlogs(@Param('skipNumber') skipNumber) {
+        return this.blogService.findAll(skipNumber)
     }
+
+    @Post('loadmore')
+    async getBlogsLoadMore(@Body() body) {
+        return this.blogService.loadMore(body.blogId)
+    }
+
+    @Post('search')
+    async searchBlogs(@Body() body) {
+        return this.blogService.search(body.textSearch)
+    }
+
 
     @UseGuards(JwtAuthGuard)
     @Post('create')

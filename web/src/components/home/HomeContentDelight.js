@@ -1,18 +1,20 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { SERVER } from '../../apis/API';
 import { getVideoThunk } from '../../redux/videoSlice';
+import { Routes } from '../../routes';
 export default function HomeContentDelight() {
   const [videoTop, setVideoTop] = useState();
   const [videoBottom, setVideoBottom] = useState();
   let dispatch = useDispatch()
   const search = async () => {
-    let resp = await dispatch(getVideoThunk());
+    let resp = await dispatch(getVideoThunk(0));
     if (resp) {
       let respVideoTop = [];
       let respVideoBottom = [];
-      resp.forEach((item, index) => {
+      resp.data.forEach((item, index) => {
         if (index < 2) {
           respVideoTop.push(item)
         } else {
@@ -23,9 +25,10 @@ export default function HomeContentDelight() {
       setVideoBottom(respVideoBottom)
     }
   }
+  let history = useHistory();
   useEffect(() => {
     search() // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []) 
+  }, [])
   return (
     <>
       <div className="content__delight">
@@ -39,7 +42,12 @@ export default function HomeContentDelight() {
             {videoTop && videoTop.map((item, index) => {
               return (
                 <div className="item" key={index}>
-                  <a href={item.videoUrl}>
+                  <div onClick={() => {
+                    history.push({
+                      pathname: Routes.VideoDetail.path,
+                      state: item
+                    })
+                  }} >
                     <div className="item__image">
                       <div className='item__image--overlay' ></div>
                       <img src={`${SERVER.URL_IMAGE}${item.photoURL}`} alt="" />
@@ -52,7 +60,7 @@ export default function HomeContentDelight() {
                         </svg>
                       </div>
                     </div>
-                  </a>
+                  </div>
                   <div className="item__content">
                     <div className="date">{moment(item.createdDate).format("DD-MM-YYYY")}</div>
                     <div className="title-video">{item?.title}</div>
@@ -65,7 +73,12 @@ export default function HomeContentDelight() {
             {videoBottom && videoBottom.map((item, index) => {
               return (
                 <div className="item" key={index} >
-                  <a href={item.videoUrl}>
+                  <div onClick={() => {
+                    history.push({
+                      pathname: Routes.VideoDetail.path,
+                      state: item
+                    })
+                  }} >
                     <div className="item__image">
                       <img src={`${SERVER.URL_IMAGE}${item.photoURL}`} alt="" />
                       <div className='item__image--overlay' ></div>
@@ -78,7 +91,7 @@ export default function HomeContentDelight() {
                         </svg>
                       </div>
                     </div>
-                  </a>
+                  </div>
                   <div className="item__content">
                     <div className="date">{moment(item.createdDate).format("DD-MM-YYYY")}</div>
                     <div className="title-video">

@@ -1,7 +1,7 @@
 import { privateDeleteApi, privatePostApi, publicGetApi } from "../apis/API";
 
-export const getVideo = async () => {
-    let response = await publicGetApi('/video')
+export const getVideo = async (dto) => {
+    let response = await publicGetApi(`/video/${dto}`)
     return response
 };
 

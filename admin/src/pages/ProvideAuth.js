@@ -33,6 +33,7 @@ import CountdownAdd from "./countdown/CountdownAdd";
 import CountdownEdit from "./countdown/CountdownEdit";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import ChangePassword from "./examples/ChangePassword";
+import Feedback from "./feedback/Feedback";
 import Product from "./product/Product";
 import ProductAdd from "./product/ProductAdd";
 import ProductEdit from "./product/ProductEdit";
@@ -133,6 +134,7 @@ export default function ProvideAuth() {
             <RouteWithSidebar exact path={Routes.CountdownEdit.path} component={CountdownEdit} />
 
             <RouteWithSidebar exact path={Routes.User.path} component={User} />
+            <RouteWithSidebar exact path={Routes.Feedback.path} component={Feedback} />
 
             <Redirect from="/" to="/" />
         </Switch>

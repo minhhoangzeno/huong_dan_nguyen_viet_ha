@@ -1,19 +1,23 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { SERVER } from '../../apis/API';
 import { getBlogThunk } from '../../redux/blogSlice';
+import { Routes } from '../../routes';
 export default function HomeBlog() {
     const [blogTop, setBlogTop] = useState();
     const [blogBottom, setBlogBottom] = useState();
+    let history = useHistory();
     let dispatch = useDispatch()
     const search = async () => {
-        let resp = await dispatch(getBlogThunk());
+        let resp = await dispatch(getBlogThunk(0));
         if (resp) {
             let respBlogTop = [];
             let respBlogBottom = [];
-            resp.forEach((item, index) => {
-                if (index % 2 === 0) {
+
+            resp.data.forEach((item, index) => {
+                if (index < 3) {
                     respBlogTop.push(item)
                 } else {
                     respBlogBottom.push(item)
@@ -37,7 +41,10 @@ export default function HomeBlog() {
                 <div className="row row__top">
                     {blogTop && blogTop.map((item, index) => {
                         return (
-                            <div className="item" key={index} >
+                            <div className="item" key={index} onClick={() => history.push({
+                                pathname: Routes.BlogDetail.path,
+                                state: item
+                            })} >
                                 <div className="item__image">
                                     <img
                                         src={`${SERVER.URL_IMAGE}${item?.photoURL}`}

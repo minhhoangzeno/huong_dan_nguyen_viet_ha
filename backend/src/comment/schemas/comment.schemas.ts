@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { Reply } from 'src/reply/schemas/reply.schemas';
+import { User } from 'src/user/schemas/user.schemas';
 
 export type CommentDocument = Comment & Document;
 
@@ -16,14 +16,11 @@ export class Comment {
     @Prop({ required: true })
     title: string;
 
-    @Prop()
-    createdBy: string
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+    createdBy: User;
 
-    @Prop()
+    @Prop({ default: Date() })
     createdAt: Date
-
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }] })
-    replies: Reply[];
 
 }
 

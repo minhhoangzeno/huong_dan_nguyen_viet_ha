@@ -25,10 +25,10 @@ export const videoSlice = createSlice({
 export const { setData, setError } = videoSlice.actions;
 
 // Define a thunk that dispatches those action creators
-export const getVideoThunk = () => async (dispatch) => {
+export const getVideoThunk = (dto) => async (dispatch) => {
 
     try {
-        const data = await getVideo();
+        const data = await getVideo(dto);
         dispatch(setData(data))
     } catch (err) {
         dispatch(setError(err))
@@ -39,7 +39,6 @@ export const getVideoThunk = () => async (dispatch) => {
 export const addVideoThunk = (data) => async (dispatch) => {
     try {
         let response = await addVideo(data);
-        getVideoThunk();
         return response;
     } catch (error) {
         console.log(error)

@@ -16,50 +16,43 @@ exports.VideoService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const comment_service_1 = require("../comment/comment.service");
 const video_schemas_1 = require("./schemas/video.schemas");
 let VideoService = class VideoService {
-    constructor(videoModel, commentService) {
+    constructor(videoModel) {
         this.videoModel = videoModel;
-        this.commentService = commentService;
     }
-    async findAll() {
-        return this.videoModel.find();
+    async loadMore(videoId) {
+        return this.videoModel.find({ '_id': { $ne: videoId } });
+    }
+    async findAll(skipNumber) {
+        return this.videoModel.find({}).sort({ createdAt: -1 }).skip(skipNumber).limit(5).exec().then(data => {
+            return this.videoModel.countDocuments().exec().then(count => {
+                return {
+                    totalPage: count,
+                    data
+                };
+            });
+        });
+    }
+    async createVideo(createVideoDto, photoURL, videoURL, username) {
+        let date = new Date();
+        const video = new this.videoModel(Object.assign(Object.assign({}, createVideoDto), { photoURL, createdAt: date, createdBy: username, videoURL }));
+        return video.save();
     }
     async findById(id) {
-        return this.videoModel.findById(id.toString());
-    }
-    async createVideo(createVideo, photoURL, fullName) {
-        let date = new Date();
-        const video = new this.videoModel(Object.assign(Object.assign({}, createVideo), { photoURL, createdAt: date, createdBy: fullName }));
-        return video.save();
+        return await this.videoModel.findById(id);
     }
     async deleteById(id) {
         let video = await this.videoModel.findById(id);
-        let comments = await this.commentService.getComment(video._id);
-        comments.forEach(comment => this.commentService.deleteComment(comment._id.toString()));
-        video.remove();
-    }
-    async updateById(id, videoDto, photoURL) {
-        let video = await this.videoModel.findById(id.toString());
-        if (photoURL) {
-            video.videoUrl = videoDto.videoUrl;
-            video.title = videoDto.title;
-            video.photoURL = photoURL;
-            return video.save();
-        }
-        else {
-            video.videoUrl = videoDto.videoUrl;
-            video.title = videoDto.title;
-            return video.save();
+        if (video) {
+            video.remove();
         }
     }
 };
 VideoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(video_schemas_1.Video.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model,
-        comment_service_1.CommentService])
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], VideoService);
 exports.VideoService = VideoService;
 //# sourceMappingURL=video.service.js.map

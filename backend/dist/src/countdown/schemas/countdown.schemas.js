@@ -35,6 +35,10 @@ __decorate([
     __metadata("design:type", Array)
 ], CountDown.prototype, "products", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] }),
+    __metadata("design:type", Array)
+], CountDown.prototype, "votes", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ProductCountDown' }] }),
     __metadata("design:type", Array)
 ], CountDown.prototype, "total", void 0);

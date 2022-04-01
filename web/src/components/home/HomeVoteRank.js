@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { SERVER } from '../../apis/API';
-import '../../scss/home.scss'
-import { detailCountdown, getCountdown } from '../../services/countdown.service';
+import { getCountdownThunk } from '../../redux/countdownSlice';
+import '../../scss/home.scss';
+import { detailCountdown } from '../../services/countdown.service';
 export default function HomeVoteRank() {
 
     const [img, setImg] = useState()
     const [countdown, setCountdown] = useState();
+    let dispatch = useDispatch()
     let search = async () => {
-        let data = await getCountdown();
+        let data = await dispatch(getCountdownThunk());
         if (data) {
             let resp = await detailCountdown(data[0]?._id);
             setCountdown(resp);
@@ -15,7 +18,7 @@ export default function HomeVoteRank() {
         }
     }
     useEffect(() => {
-        search()
+        search() // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     let returnPercent = (product) => {
         if (countdown.total === 0) {
@@ -36,18 +39,19 @@ export default function HomeVoteRank() {
                     <div className='container' >
                         <div className='row' >
                             <div className='col-6 vote-rank__img' >
-                                <img alt=''
+                                {img && <img alt=''
                                     src={`${SERVER.URL_IMAGE}${img}`}
-                                />
+                                />}
+
                             </div>
                             <div className='col-6' >
                                 <ul className='vote-rank__menu' >
                                     {countdown?.products?.map((item, index) => {
                                         return (
                                             <li className='vote-rank__menu--item' key={index}
-                                            onClick={() => {
-                                                setImg(item.product.photoURL)
-                                            }}
+                                                onClick={() => {
+                                                    setImg(item.product.photoURL)
+                                                }}
                                             >
                                                 <div className='product__content' >
                                                     <div className='product__content--index'>

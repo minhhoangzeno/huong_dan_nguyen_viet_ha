@@ -63,5 +63,6 @@ export const Routes = {
     FeeAdd: { path: "/fee/add" },
     FeeDetail: { path: "/fee/detail" },
 
+    Feedback: { path: "/feedback" },
     User: { path: "/user" },
 };

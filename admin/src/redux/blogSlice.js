@@ -25,10 +25,10 @@ export const blogSlice = createSlice({
 export const { setData, setError } = blogSlice.actions;
 
 // Define a thunk that dispatches those action creators
-export const getBlogThunk = () => async (dispatch) => {
+export const getBlogThunk = (dto) => async (dispatch) => {
 
     try {
-        const data = await getBlog();
+        const data = await getBlog(dto);
         dispatch(setData(data))
     } catch (err) {
         dispatch(setError(err))

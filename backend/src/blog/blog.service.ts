@@ -8,8 +8,25 @@ import { Blog, BlogDocument } from './schemas/blog.schemas';
 export class BlogService {
     constructor(@InjectModel(Blog.name) private blogModel: Model<BlogDocument>) { }
 
-    async findAll(): Promise<Blog[]> {
-        return this.blogModel.find({}).sort({ createdAt: -1 })
+
+    async loadMore(blogId) {
+        return this.blogModel.find({ '_id': { $ne: blogId } })
+    }
+
+    async findAll(skipNumber) {
+        return this.blogModel.find({}).sort({ createdAt: -1 }).skip(skipNumber).limit(6).exec().then(data => {
+            return this.blogModel.countDocuments().exec().then(count => {
+                return {
+                    totalPage: count,
+                    data
+                };
+            })
+        })
+    }
+
+    async search(textSearch) {
+        let regex = new RegExp(textSearch, "i");
+        return await this.blogModel.find({ title: regex });
     }
 
     async createBlog(createBlogDto: BlogDto, photoURL: string, username: string): Promise<Blog> {
@@ -24,7 +41,7 @@ export class BlogService {
 
     async deleteById(id: string) {
         let blog = await this.blogModel.findById(id);
-        if(blog){
+        if (blog) {
             blog.remove()
         }
     }

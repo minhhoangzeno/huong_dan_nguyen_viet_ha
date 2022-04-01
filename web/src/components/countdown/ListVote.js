@@ -14,8 +14,19 @@ export default ({ countdownId }) => {
             setCountdown(resp);
         }
     }
+    const [check, setCheck] = useState(false);
+    let dispatch = useDispatch();
+    let checkVoted = async () => {
+        let resp = await dispatch(checkVoteUserThunk({
+            countdown: countdownId
+        }))
+        setCheck(resp)
+    }
+   
+   
     useEffect(() => {
-        search() // eslint-disable-next-line react-hooks/exhaustive-deps
+        search()
+        checkVoted() // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [countdownId]);
 
     return (
@@ -26,7 +37,7 @@ export default ({ countdownId }) => {
                         {countdown?.products?.length > 0 &&
                             countdown?.products?.map((item, index) => {
                                 return (
-                                    <VoteItem key={index} item={item.product} countdownId={countdownId} />
+                                    <VoteItem key={index} item={item.product} check={check} setCheck={setCheck} countdownId={countdownId} />
                                 )
                             })
                         }
@@ -37,22 +48,10 @@ export default ({ countdownId }) => {
     )
 }
 
-function VoteItem({ item, countdownId }) {
+function VoteItem({ item, countdownId , check, setCheck}) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const [check, setCheck] = useState(false);
-    let dispatch = useDispatch();
-    let checkVoted = async () => {
-        let resp = await dispatch(checkVoteUserThunk({
-            countdown: countdownId,
-            product: item._id,
-        }))
-        setCheck(resp)
-    }
     let { addToast } = useToasts();
-    useEffect(() => {
-        checkVoted() // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [countdownId, item._id]);
     return (
 
         <>
@@ -68,7 +67,7 @@ function VoteItem({ item, countdownId }) {
                             <div className="dark-bg" />
                             <div className="voting-btn"
                                 onClick={() => {
-                                    check ? addToast("Bạn đã vote cho sản phẩm này rồi!", { appearance: 'success', autoDismiss: 1000 }) : setShow(true)
+                                    check ? addToast("Bạn đã vote cho sự kiện rồi!", { appearance: 'success', autoDismiss: 1000 }) : setShow(true)
                                 }}
                             >Vote now</div>
                         </div>

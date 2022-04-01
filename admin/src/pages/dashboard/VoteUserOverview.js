@@ -30,17 +30,17 @@ export default () => {
                     <Col className="col-auto">
                         <a href="#top" className="user-avatar">
 
-                            {user?.photoURL ? <Image src={`${SERVER.URL_IMAGE}${user.photoURL}`} className="rounded-circle" />
+                            {user?._id.photoURL ? <Image src={`${SERVER.URL_IMAGE}${user._id.photoURL}`} className="rounded-circle" />
                                 : <Image src={Profile3} className="rounded-circle" />
                             }
                         </a>
                     </Col>
                     <Col className="ms--2">
                         <h4 className="h6 mb-0">
-                            <a href="#!">{user?.user?.fullName}</a>
+                            <a href="#!">{user?._id?.fullName}</a>
                         </h4>
                         <span className={`text-red`}>Amount votes: </span>
-                        <small>{user?.votes?.length}</small>
+                        <small>{user?.totalVote}</small>
                     </Col>
                     <Col className="col-auto">
                         <Button variant="tertiary" size="sm">

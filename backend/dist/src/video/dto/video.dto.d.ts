@@ -1,4 +1,5 @@
 export declare class VideoDto {
-    videoUrl: string;
     title: string;
+    metaDescription: string;
+    content: string;
 }

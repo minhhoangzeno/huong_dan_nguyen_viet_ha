@@ -1,18 +1,19 @@
 import { Model } from 'mongoose';
-import { CommentService } from 'src/comment/comment.service';
 import { VideoDto } from './dto/video.dto';
 import { Video, VideoDocument } from './schemas/video.schemas';
 export declare class VideoService {
     private videoModel;
-    private commentService;
-    constructor(videoModel: Model<VideoDocument>, commentService: CommentService);
-    findAll(): Promise<(Video & import("mongoose").Document<any, any, any> & {
+    constructor(videoModel: Model<VideoDocument>);
+    loadMore(videoId: any): Promise<(Video & import("mongoose").Document<any, any, any> & {
         _id: any;
     })[]>;
-    findById(id: any): Promise<Video & import("mongoose").Document<any, any, any> & {
-        _id: any;
+    findAll(skipNumber: any): Promise<{
+        totalPage: number;
+        data: (Video & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        })[];
     }>;
-    createVideo(createVideo: VideoDto, photoURL: string, fullName: string): Promise<Video>;
+    createVideo(createVideoDto: VideoDto, photoURL: string, videoURL: string, username: string): Promise<Video>;
+    findById(id: string): Promise<Video>;
     deleteById(id: string): Promise<void>;
-    updateById(id: string, videoDto: VideoDto, photoURL?: string): Promise<Video>;
 }

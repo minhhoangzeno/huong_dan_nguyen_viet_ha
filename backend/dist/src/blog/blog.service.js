@@ -21,8 +21,22 @@ let BlogService = class BlogService {
     constructor(blogModel) {
         this.blogModel = blogModel;
     }
-    async findAll() {
-        return this.blogModel.find({}).sort({ createdAt: -1 });
+    async loadMore(blogId) {
+        return this.blogModel.find({ '_id': { $ne: blogId } });
+    }
+    async findAll(skipNumber) {
+        return this.blogModel.find({}).sort({ createdAt: -1 }).skip(skipNumber).limit(6).exec().then(data => {
+            return this.blogModel.countDocuments().exec().then(count => {
+                return {
+                    totalPage: count,
+                    data
+                };
+            });
+        });
+    }
+    async search(textSearch) {
+        let regex = new RegExp(textSearch, "i");
+        return await this.blogModel.find({ title: regex });
     }
     async createBlog(createBlogDto, photoURL, username) {
         let date = new Date();

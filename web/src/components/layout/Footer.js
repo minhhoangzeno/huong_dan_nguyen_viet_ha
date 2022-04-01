@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../scss/style.scss';
 import logo from '../../img/logo.png'
+import Feedback from './Feedback';
 export default () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
     return (
         <>
+            <Feedback show={show} handleClose={handleClose} />
             <section className="footer">
                 <div className="container">
                     <div className="footer__infor">
@@ -61,22 +65,33 @@ export default () => {
                                             <p>AM 10:00- PM 17:00(Off-time 12:00-13:00)</p>
                                             <p>Day Off(Saturday, Sunday, Holiday)</p>
                                         </div>
-                                        <div className="infor__customer--sub">
-                                            <div className="sub__item">
-                                                <a href="/" className="btn-plus"  target="_blank">
-                                                    FAQ
-                                                </a>
+                                        <div className="infor__customer--sub" style={{ flexDirection: 'column' }} >
+                                            <div style={{ display: 'flex' }} >
+                                                <div className="sub__item">
+                                                    <a href="/" className="btn-plus" target="_blank">
+                                                        FAQ
+                                                    </a>
+                                                </div>
+                                                <div className="sub__item">
+                                                    <a href="/" className="btn-plus">
+                                                        Inquiry
+                                                    </a>
+                                                </div>
+                                                <div className="sub__item">
+                                                    <a href="/" className="btn-plus">
+                                                        Previous Vote Result
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div className="sub__item">
-                                                <a href="/" className="btn-plus">
-                                                    Inquiry
-                                                </a>
+
+                                            <div style={{ display: 'flex', justifyContent: 'center', color: '#fff', marginTop: 8, cursor: 'pointer' }}
+                                            onClick={() => setShow(true)}
+                                            >
+                                                Feedback &nbsp; <svg style={{ width: 20, height: 20 }} viewBox="0 0 24 24">
+                                                    <path fill="white" d="M13,10H11V6H13V10M13,12H11V14H13V12M22,4V16A2,2 0 0,1 20,18H6L2,22V4A2,2 0 0,1 4,2H20A2,2 0 0,1 22,4M20,4H4V17.2L5.2,16H20V4Z" />
+                                                </svg>
                                             </div>
-                                            <div className="sub__item">
-                                                <a href="/" className="btn-plus">
-                                                    Previous Vote Result
-                                                </a>
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div className="infor__org">
@@ -86,7 +101,7 @@ export default () => {
                                                     fill="currentColor"
                                                     d="M5,3V21H11V17.5H13V21H19V3H5M7,5H9V7H7V5M11,5H13V7H11V5M15,5H17V7H15V5M7,9H9V11H7V9M11,9H13V11H11V9M15,9H17V11H15V9M7,13H9V15H7V13M11,13H13V15H11V13M15,13H17V15H15V13M7,17H9V19H7V17M15,17H17V19H15V17Z"
                                                 />
-                                            </svg>{" "} 
+                                            </svg>{" "}
                                             Address: KFes 870-13, GwaCheon, SeoCho, Seoul, Korea
                                         </div>
                                         <div className="infor__org--icon">

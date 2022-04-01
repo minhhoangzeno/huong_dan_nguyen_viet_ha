@@ -58,7 +58,6 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
             return 7
         }
     }
-    console.log(time)
     let returnRightIndex = (index) => {
         if (index === 0) {
             return 2
@@ -70,15 +69,7 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
             return 8
         }
     }
-    // let a = moment(countdown?.countdown.endDate).format("DD-MM-YYYY HH:mm:ss");
 
-    // let b = moment().format("DD-MM-YYYY HH:mm:ss");
-    // console.log(b);
-    // let durations = moment.duration(moment().diff(a));
-    // console.log(durations.asSeconds())
-    // let durations = moment.duration(a.diff(b));
-    // console.log(durations)
-    // console.log(durations.asSeconds())
     return (
         <>
             <div className="countdown-clock"
@@ -103,7 +94,7 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
                 >
                     {countdowns.length > 0 && countdowns.map((countdown, index) => {
                         return (
-                            <option key={index} style={{ fontSize: 30, fontWeight: 'bold' }} >
+                            <option key={index} style={{ fontSize: 30, fontWeight: 'bold' }} value={countdown._id} >
                                 {countdown?.title}
                             </option>
                         )

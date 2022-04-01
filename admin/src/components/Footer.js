@@ -16,7 +16,7 @@ export default (props) => {
             <p className="mb-0 text-center text-xl-left">
               Copyright © 2021-{`${currentYear} `}
               <Card.Link href="https://www.facebook.com/CLBTaekwondoNEU" target="_blank" className="text-blue text-decoration-none fw-normal">
-                Taekwondo Neu
+                KFES
               </Card.Link>
             </p>
           </Col>

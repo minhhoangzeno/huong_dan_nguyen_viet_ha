@@ -19,17 +19,25 @@ __decorate([
     __metadata("design:type", mongoose.Schema.Types.ObjectId)
 ], Video.prototype, "id", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ unique: true, required: true }),
-    __metadata("design:type", String)
-], Video.prototype, "videoUrl", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Video.prototype, "title", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
+], Video.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Video.prototype, "metaDescription", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
 ], Video.prototype, "photoURL", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ index: true, unique: true, sparse: true }),
+    __metadata("design:type", String)
+], Video.prototype, "videoURL", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
@@ -38,10 +46,6 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
 ], Video.prototype, "createdAt", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] }),
-    __metadata("design:type", Array)
-], Video.prototype, "comments", void 0);
 Video = __decorate([
     (0, mongoose_1.Schema)()
 ], Video);

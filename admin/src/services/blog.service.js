@@ -1,7 +1,7 @@
 import { privateDeleteApi, privatePostApi, publicGetApi } from "../apis/API";
 
-export const getBlog = async () => {
-    let response = await publicGetApi('/blog')
+export const getBlog = async (dto) => {
+    let response = await publicGetApi(`/blog/${dto}`)
     return response
 };
 

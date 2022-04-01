@@ -7,6 +7,7 @@ import productReducer from './productSlice';
 import countdownReducer from './countdownSlice';
 import dashboardReducer from './dashboardSlice';
 import userReducer from './userSlice';
+import feedbackReducer from './feedbackSlice'
 //USE TOOLKIT
 const rootReducer = {
     reducer: {
@@ -17,7 +18,8 @@ const rootReducer = {
         product: productReducer,
         countdown: countdownReducer,
         dashboard: dashboardReducer,
-        user: userReducer
+        user: userReducer,
+        feedback: feedbackReducer
 
     },
 };

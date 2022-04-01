@@ -42,7 +42,7 @@ export default () => {
                   </div>
                   <Form className="mt-4">
                     <Form.Group id="email" className="mb-4">
-                      <Form.Label>Your Email</Form.Label>
+                      <Form.Label>Your Username</Form.Label>
                       <Controller
                         control={control}
                         name="username"
@@ -53,7 +53,7 @@ export default () => {
                             <InputGroup.Text style={{ borderColor: errors.username?.type === "required" && 'red' }}>
                               <FontAwesomeIcon icon={faEnvelope} />
                             </InputGroup.Text>
-                            <Form.Control autoFocus required type="email" placeholder="example@company.com" onChange={e => onChange(e.target.value)}
+                            <Form.Control autoFocus required onChange={e => onChange(e.target.value)}
                               onBlur={onBlur}
                               style={{ borderColor: errors.username?.type === "required" && 'red' }}
                             />

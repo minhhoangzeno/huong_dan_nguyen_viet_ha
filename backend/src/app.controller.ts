@@ -14,22 +14,27 @@ export class AppController {
 
   @Get('image/:imagename')
   getImage(@Param('imagename') imagename, @Response() res) {
-    return of(res.sendFile(join(__dirname, '../../uploads/', imagename)))
+    if (imagename !== undefined) {
+      return of(res.sendFile(join(__dirname, '../../uploads/', imagename)))
+    } else {
+      return of(res.sendFile(join(__dirname, '../../uploads/', "0ceab74e72410082339bf1cb19107c1074cba81daacac6fc05b75d4f5fcded30640280d0c9eacc41bd30dd8ffd9f90bb10a.jpeg")))
+    }
+
   }
 
 
   @Post('image')
   @UseInterceptors(FileInterceptor('file', {
-      storage: diskStorage({
-          destination: './uploads',
-          filename: (req, file, cb) => {
-              const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
-              cb(null, `${randomName}${(file.originalname)}`)
-          }
-      })
+    storage: diskStorage({
+      destination: './uploads',
+      filename: (req, file, cb) => {
+        const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+        cb(null, `${randomName}${(file.originalname)}`)
+      }
+    })
   }))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
-      return file.filename
+    return file.filename
   }
 
 }

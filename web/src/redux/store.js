@@ -8,6 +8,8 @@ import countdownReducer from './countdownSlice';
 import dashboardReducer from './dashboardSlice';
 import userReducer from './userSlice';
 import voteUserReducer from './voteUserSlice'
+import feedbackReducer from './feedbackSlice';
+import commentReducer from './commentSlice';
 //USE TOOLKIT
 const rootReducer = {
     reducer: {
@@ -19,8 +21,9 @@ const rootReducer = {
         countdown: countdownReducer,
         dashboard: dashboardReducer,
         user: userReducer,
-        voteUser: voteUserReducer
-
+        voteUser: voteUserReducer,
+        feedback: feedbackReducer,
+        comment: commentReducer
     },
 };
 

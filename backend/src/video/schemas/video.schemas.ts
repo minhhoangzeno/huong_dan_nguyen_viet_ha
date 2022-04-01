@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { Comment } from 'src/comment/schemas/comment.schemas';
 
 export type VideoDocument = Video & Document;
 
@@ -10,24 +9,26 @@ export class Video {
     @Prop()
     id: mongoose.Schema.Types.ObjectId;
 
-    @Prop({ unique: true, required: true })
-    videoUrl: string;
-
     @Prop({ required: true })
     title: string;
 
     @Prop({ required: true })
+    content: string;
+
+    @Prop({ required: true })
+    metaDescription: string;
+
+    @Prop()
     photoURL: string;
+
+    @Prop({ index: true ,unique:true, sparse:true})
+    videoURL: string;
 
     @Prop()
     createdBy: string;
 
     @Prop()
     createdAt: Date;
-
-    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
-    comments: Comment[];
-
 }
 
 export const VideoSchema = SchemaFactory.createForClass(Video);

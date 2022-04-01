@@ -3,6 +3,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { SERVER } from '../../apis/API';
 import { Routes } from '../../routes';
+import ReactPlayer from "react-player";
 
 export default () => {
     let history = useHistory()
@@ -24,11 +25,9 @@ export default () => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Video url</Form.Label>
-                        <InputGroup >
-                            <Form.Control as="textarea" rows={3} autoFocus disabled type="text"
-                                value={video.videoUrl}
-                            />
-                        </InputGroup>
+                        <div style={{width:'100%',height:200}} >
+                            <ReactPlayer url={`${SERVER.URL_IMAGE}${video.videoURL}`} width="100%" height="100%" controls={true} />
+                        </div>
                     </Form.Group>
 
                     <Form.Group className="mt-4" >

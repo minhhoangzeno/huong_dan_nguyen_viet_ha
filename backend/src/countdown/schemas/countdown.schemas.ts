@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Product } from 'src/product/schemas/product.schemas';
 import { ProductCountDown } from 'src/productcountdown/schemas/productcountdown.schemas';
+import { User } from 'src/user/schemas/user.schemas';
 
 export type CountDownDocument = CountDown & Document;
 
@@ -22,6 +23,9 @@ export class CountDown {
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }] })
     products: Product[];
+
+    @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
+    votes: User[];
 
     @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ProductCountDown' }] })
     total: ProductCountDown[];

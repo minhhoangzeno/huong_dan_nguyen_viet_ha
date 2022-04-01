@@ -25,7 +25,7 @@ let CommentController = class CommentController {
         return this.commentService.getComment(typeId);
     }
     async createComment(body, req) {
-        return this.commentService.addComment(body, req.user._doc.fullName);
+        return this.commentService.addComment(body, req.user._doc._id);
     }
     async removeCommentById(id) {
         return this.commentService.deleteComment(id);
@@ -52,7 +52,7 @@ __decorate([
 ], CommentController.prototype, "createComment", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('remove/:id'),
+    (0, common_1.Delete)('remove/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -60,7 +60,7 @@ __decorate([
 ], CommentController.prototype, "removeCommentById", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Post)('update/:id'),
+    (0, common_1.Post)('edit/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

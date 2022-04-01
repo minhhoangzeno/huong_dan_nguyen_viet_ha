@@ -8,7 +8,9 @@ export declare class CommentController {
         _id: any;
     })[]>;
     createComment(body: CommentDto, req: any): Promise<import("./schemas/comment.schemas").Comment>;
-    removeCommentById(id: any): Promise<void>;
+    removeCommentById(id: any): Promise<import("./schemas/comment.schemas").Comment & import("mongoose").Document<any, any, any> & {
+        _id: any;
+    }>;
     updateCommentById(id: any, body: any): Promise<import("./schemas/comment.schemas").Comment & import("mongoose").Document<any, any, any> & {
         _id: any;
     }>;

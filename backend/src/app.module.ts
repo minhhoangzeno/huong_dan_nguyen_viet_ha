@@ -8,10 +8,10 @@ import { CommentModule } from './comment/comment.module';
 import { CountdownModule } from './countdown/countdown.module';
 import { ProductModule } from './product/product.module';
 import { ProductcountdownModule } from './productcountdown/productcountdown.module';
-import { ReplyModule } from './reply/reply.module';
 import { UserModule } from './user/user.module';
 import { VideoModule } from './video/video.module';
 import { VoteUserModule } from './vote-user/vote-user.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 
 @Module({
@@ -21,11 +21,11 @@ import { VoteUserModule } from './vote-user/vote-user.module';
     BlogModule,
     VideoModule,
     CommentModule,
-    ReplyModule,
     ProductModule,
     CountdownModule,
     ProductcountdownModule,
-    VoteUserModule
+    VoteUserModule,
+    FeedbackModule
   ],
   controllers: [AppController],
   providers: [AppService],

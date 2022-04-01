@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommentSchema = exports.Comment = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose = require("mongoose");
+const user_schemas_1 = require("../../user/schemas/user.schemas");
 let Comment = class Comment {
 };
 __decorate([
@@ -27,17 +28,13 @@ __decorate([
     __metadata("design:type", String)
 ], Comment.prototype, "title", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
+    (0, mongoose_1.Prop)({ type: mongoose.Schema.Types.ObjectId, ref: 'User' }),
+    __metadata("design:type", user_schemas_1.User)
 ], Comment.prototype, "createdBy", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ default: Date() }),
     __metadata("design:type", Date)
 ], Comment.prototype, "createdAt", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }] }),
-    __metadata("design:type", Array)
-], Comment.prototype, "replies", void 0);
 Comment = __decorate([
     (0, mongoose_1.Schema)()
 ], Comment);

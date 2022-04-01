@@ -27,7 +27,12 @@ let AppController = class AppController {
         return this.appService.sendEmail();
     }
     getImage(imagename, res) {
-        return (0, rxjs_1.of)(res.sendFile((0, path_1.join)(__dirname, '../../uploads/', imagename)));
+        if (imagename !== undefined) {
+            return (0, rxjs_1.of)(res.sendFile((0, path_1.join)(__dirname, '../../uploads/', imagename)));
+        }
+        else {
+            return (0, rxjs_1.of)(res.sendFile((0, path_1.join)(__dirname, '../../uploads/', "0ceab74e72410082339bf1cb19107c1074cba81daacac6fc05b75d4f5fcded30640280d0c9eacc41bd30dd8ffd9f90bb10a.jpeg")));
+        }
     }
     async uploadFile(file) {
         return file.filename;

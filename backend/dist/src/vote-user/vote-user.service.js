@@ -24,7 +24,16 @@ let VoteUserService = class VoteUserService {
         this.productCountdownModel = productCountdownModel;
     }
     async findAll() {
-        return this.voteUserModel.find().populate("user", "fullName photoURL", "User");
+        let data = await this.voteUserModel.aggregate([
+            {
+                $group: {
+                    _id: "$user",
+                    totalVote: { $sum: 1 },
+                },
+            }
+        ]);
+        let resp = data.sort((a, b) => b.totalVote - a.totalVote);
+        return this.voteUserModel.populate(resp, { path: '_id', select: 'fullName photoURL', model: 'User' });
     }
     async findById(userId) {
         let voteUsers = await this.voteUserModel.find({ user: userId }).populate({
