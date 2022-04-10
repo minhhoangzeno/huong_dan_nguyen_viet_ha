@@ -1,4 +1,3 @@
-/// <reference types="mongoose" />
 import { CountdownService } from './countdown.service';
 export declare class CountdownController {
     private countdownService;
@@ -8,6 +7,15 @@ export declare class CountdownController {
         _id: any;
     })[]>;
     getDetail(id: any): Promise<{
+        total: number;
+        countdown: import("./schemas/countdown.schemas").CountDown & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        };
+        products: (import("../productcountdown/schemas/productcountdown.schemas").ProductCountDown & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        })[];
+    }>;
+    getDetailHome(id: any): Promise<{
         total: number;
         countdown: import("./schemas/countdown.schemas").CountDown & import("mongoose").Document<any, any, any> & {
             _id: any;

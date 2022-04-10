@@ -19,6 +19,11 @@ export class VideoController {
         return this.videoService.findAll(skipNumber)
     }
 
+    @Get('home/:skipNumber')
+    async getVideosByHome(@Param('skipNumber') skipNumber) {
+        return this.videoService.findAllVideoByHome(skipNumber)
+    }
+
     // @UseGuards(JwtAuthGuard)
     // @Post('create')
     // @UseInterceptors(FileInterceptor('file', {

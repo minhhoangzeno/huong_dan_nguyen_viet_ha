@@ -64,7 +64,7 @@ export default () => {
                             <InputGroup.Text style={{ borderColor: errors.email?.type === "required" && 'red' }} >
                               <FontAwesomeIcon icon={faEnvelope} />
                             </InputGroup.Text>
-                            <Form.Control autoFocus required type="email" placeholder="example@company.com" onChange={e => onChange(e.target.value)}
+                            <Form.Control autoFocus required type="email" placeholder="kfes@gmail.com" onChange={e => onChange(e.target.value)}
                               onBlur={onBlur}
                               style={{ borderColor: errors.email?.type === "required" && 'red' }}
                             />
@@ -112,7 +112,7 @@ export default () => {
                             <InputGroup.Text style={{ borderColor: errors.email?.type === "required" && 'red' }}>
                               <FontAwesomeIcon icon={faUser} />
                             </InputGroup.Text>
-                            <Form.Control autoFocus required type="text" placeholder="Ha" onChange={e => onChange(e.target.value)}
+                            <Form.Control autoFocus required type="text" placeholder="Nguyễn" onChange={e => onChange(e.target.value)}
                               onBlur={onBlur}
                               style={{ borderColor: errors.email?.type === "required" && 'red' }}
                             />
@@ -133,7 +133,7 @@ export default () => {
                             <InputGroup.Text style={{ borderColor: errors.email?.type === "required" && 'red' }}>
                               <FontAwesomeIcon icon={faUser} />
                             </InputGroup.Text>
-                            <Form.Control autoFocus required type="text" placeholder="Viet" onChange={e => onChange(e.target.value)}
+                            <Form.Control autoFocus required type="text" placeholder="Việt Hà" onChange={e => onChange(e.target.value)}
                               onBlur={onBlur}
                               style={{ borderColor: errors.email?.type === "required" && 'red' }}
                             />

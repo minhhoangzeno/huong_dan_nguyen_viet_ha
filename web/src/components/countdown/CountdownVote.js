@@ -25,11 +25,11 @@ export default function CountdownVote() {
                     <select
                         value={countdownId}
                         onChange={e => setCountdownId(e.target.value)}
-                        style={{ background: '#f5f8fb', border: 'none', fontSize: 24, fontWeight: '600' }}
+                        style={{ background: '#f5f8fb', border: 'none', fontSize: 20, fontWeight: '600' }}
                     >
                         {countdowns.length > 0 && countdowns.map((countdown, index) => {
                             return (
-                                <option key={index} style={{ fontSize: 30, fontWeight: 'bold' }} value={countdown._id} >
+                                <option key={index} style={{ fontSize: 20, fontWeight: 'bold' }} value={countdown._id} >
                                     {countdown?.title}
                                 </option>
                             )
@@ -42,7 +42,7 @@ export default function CountdownVote() {
 
             <div>
                 <div onClick={() => setShowComment(!showComment)} style={{ display: 'flex', cursor: 'pointer',alignItems:'center' }} >
-                    <h2>Comment</h2><div>
+                    <h3>Comment</h3><div>
                         {showComment ? <svg style={{ width: 24, height: 24 }} viewBox="0 0 24 24">
                             <path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
                         </svg> : <svg style={{ width: 24, height: 24 }} viewBox="0 0 24 24">

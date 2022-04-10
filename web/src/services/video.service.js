@@ -5,6 +5,12 @@ export const getVideo = async (dto) => {
     return response
 };
 
+export const getVideoByHome = async (dto) => {
+    let response = await publicGetApi(`/video/home/${dto}`)
+    return response
+};
+
+
 export const addVideo = async (data) => {
     let response = await privatePostApi('/video/create', data)
     return response

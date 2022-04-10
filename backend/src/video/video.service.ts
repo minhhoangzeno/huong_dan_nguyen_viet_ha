@@ -24,6 +24,18 @@ export class VideoService {
 
     }
 
+    async findAllVideoByHome(skipNumber) {
+        return this.videoModel.find({}).sort({ createdAt: -1 }).skip(skipNumber).limit(6).exec().then(data => {
+            return this.videoModel.countDocuments().exec().then(count => {
+                return {
+                    totalPage: count,
+                    data
+                };
+            })
+        })
+
+    }
+
     async createVideo(createVideoDto: VideoDto, photoURL: string, videoURL: string, username: string): Promise<Video> {
         let date = new Date();
         const video = new this.videoModel({ ...createVideoDto, photoURL, createdAt: date, createdBy: username, videoURL })

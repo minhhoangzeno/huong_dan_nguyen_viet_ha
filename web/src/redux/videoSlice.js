@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addVideo, deleteVideo, detailVideo, editVideo, getVideo } from '../services/video.service';
+import { addVideo, deleteVideo, detailVideo, editVideo, getVideo, getVideoByHome } from '../services/video.service';
 
 const initialState = {
     data: null,
@@ -29,6 +29,20 @@ export const getVideoThunk = (dto) => async (dispatch) => {
 
     try {
         const data = await getVideo(dto);
+        dispatch(setData(data))
+        return data;
+    } catch (err) {
+        dispatch(setError(err))
+    }
+    //done
+}
+
+
+// Define a thunk that dispatches those action creators
+export const getVideoByHomeThunk = (dto) => async (dispatch) => {
+
+    try {
+        const data = await getVideoByHome(dto);
         dispatch(setData(data))
         return data;
     } catch (err) {

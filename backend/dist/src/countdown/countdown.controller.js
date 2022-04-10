@@ -29,6 +29,9 @@ let CountdownController = class CountdownController {
     async getDetail(id) {
         return this.countdownService.findById(id);
     }
+    async getDetailHome(id) {
+        return this.countdownService.findCountDownHomeById(id);
+    }
     async createCountdown(body) {
         return this.countdownService.createCountdown(body.title, body.startDate, body.endDate, body.products);
     }
@@ -58,6 +61,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], CountdownController.prototype, "getDetail", null);
+__decorate([
+    (0, common_1.Get)('detail-home/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], CountdownController.prototype, "getDetailHome", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('create'),

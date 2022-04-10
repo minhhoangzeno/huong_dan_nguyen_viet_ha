@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { SERVER } from '../../apis/API';
 import { getCountdownThunk } from '../../redux/countdownSlice';
 import '../../scss/home.scss';
-import { detailCountdown } from '../../services/countdown.service';
+import { detailCountdownHome } from '../../services/countdown.service';
 export default function HomeVoteRank() {
 
     const [img, setImg] = useState()
@@ -12,7 +12,7 @@ export default function HomeVoteRank() {
     let search = async () => {
         let data = await dispatch(getCountdownThunk());
         if (data) {
-            let resp = await detailCountdown(data[0]?._id);
+            let resp = await detailCountdownHome(data[0]?._id);
             setCountdown(resp);
             setImg(resp.products[0]?.product?.photoURL);
         }

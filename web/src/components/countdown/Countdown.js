@@ -90,11 +90,11 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
                 <select
                     value={countdownId}
                     onChange={e => setCountdownId(e.target.value)}
-                    style={{ border: 'none', background: '#f5fbf8', fontSize: 24, fontWeight: '600', marginBottom: 30 }}
+                    style={{ border: 'none', background: '#f5fbf8', fontSize: 20, fontWeight: '600', marginBottom: 30 }}
                 >
                     {countdowns.length > 0 && countdowns.map((countdown, index) => {
                         return (
-                            <option key={index} style={{ fontSize: 30, fontWeight: 'bold' }} value={countdown._id} >
+                            <option key={index} style={{ fontSize: 20, fontWeight: 'bold' }} value={countdown._id} >
                                 {countdown?.title}
                             </option>
                         )
@@ -125,6 +125,7 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
                                                 <img
                                                     src={`${SERVER.URL_IMAGE}${item.product.photoURL}`}
                                                     alt=""
+                                                    height={150}
                                                 />
                                             </div>
                                             <div className="ranking-name">
@@ -149,6 +150,7 @@ export default ({ countdownId, setCountdownId, countdowns }) => {
                                                 <img
                                                     src={`${SERVER.URL_IMAGE}${item.product.photoURL}`}
                                                     alt=""
+                                                    height={150}
                                                 />
                                             </div>
                                             <div className="ranking-name">

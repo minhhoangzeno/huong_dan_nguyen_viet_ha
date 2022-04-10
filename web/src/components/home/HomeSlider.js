@@ -1,6 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick/lib/slider';
-import img from '../../img/Delight/redv.jpg';
+import img1 from '../../assets/home/img1.jpg'
+import img2 from '../../assets/home/img2.jpg'
+import img3 from '../../assets/home/img3.jpg'
+import img4 from '../../assets/home/img4.jpg'
 
 export default function HomeSlider() {
     const settings = {
@@ -14,19 +17,16 @@ export default function HomeSlider() {
         <>
             <Slider {...settings} >
                 <div>
-                    <img src={img} alt="" />
+                    <img src={img1} alt="" />
                 </div>
                 <div>
-                    <img src={img} alt="" />
+                    <img src={img2} alt="" />
                 </div>
                 <div>
-                    <img src={img} alt="" />
+                    <img src={img3} alt="" />
                 </div>
                 <div>
-                    <img src={img} alt="" />
-                </div>
-                <div>
-                    <img src={img} alt="" />
+                    <img src={img4} alt="" />
                 </div>
             </Slider>
         </>

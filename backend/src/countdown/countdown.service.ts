@@ -44,6 +44,23 @@ export class CountdownService {
         }
     }
 
+    async findCountDownHomeById(id) {
+        let countdown = await this.countdownModel.findById(id.toString());
+        let productcountdowns = await this.productCountDownModel.find({ countdown: countdown._id }).populate("product", "title author photoURL", "Product");
+        let total = 0;
+        productcountdowns.forEach(item => {
+            total += item.votes.length
+        });
+        let sortProducts = productcountdowns.sort((a, b) => b.votes.length - a.votes.length);
+
+        return {
+            total,
+            countdown,
+            products: [sortProducts[0], sortProducts[1], sortProducts[2], sortProducts[3], sortProducts[4]]
+
+        }
+    }
+
     async createCountdown(title, startDate, endDate, products): Promise<CountDown> {
         let date = new Date();
         const countdown = new this.countdownModel({ title, startDate, endDate, products, createdAt: date });

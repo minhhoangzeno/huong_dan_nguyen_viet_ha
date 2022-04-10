@@ -1,6 +1,6 @@
 
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { faBell, faCog, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Container, Dropdown, Image, ListGroup, Nav, Navbar, Row } from '@themesberg/react-bootstrap';
 import React, { useState } from "react";
@@ -14,7 +14,6 @@ import { Routes } from "../routes";
 
 export default (props) => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
-  const areNotificationsRead = notifications.reduce((acc, notif) => acc && notif.read, true);
   let user = JSON.parse(localStorage.getItem("user"));
   const markNotificationsAsRead = () => {
     setTimeout(() => {
@@ -64,12 +63,7 @@ export default (props) => {
           </div>
           <Nav className="align-items-center">
             <Dropdown as={Nav.Item} onToggle={markNotificationsAsRead} >
-              <Dropdown.Toggle as={Nav.Link} className="text-dark icon-notifications me-lg-3">
-                <span className="icon icon-sm">
-                  <FontAwesomeIcon icon={faBell} className="bell-shake" />
-                  {areNotificationsRead ? null : <span className="icon-badge rounded-circle unread-notifications" />}
-                </span>
-              </Dropdown.Toggle>
+             
               <Dropdown.Menu className="dashboard-dropdown notifications-dropdown dropdown-menu-lg dropdown-menu-center mt-2 py-0">
                 <ListGroup className="list-group-flush">
                   <Nav.Link href="#" className="text-center text-primary fw-bold border-bottom border-light py-3">

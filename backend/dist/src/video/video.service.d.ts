@@ -13,6 +13,12 @@ export declare class VideoService {
             _id: any;
         })[];
     }>;
+    findAllVideoByHome(skipNumber: any): Promise<{
+        totalPage: number;
+        data: (Video & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        })[];
+    }>;
     createVideo(createVideoDto: VideoDto, photoURL: string, videoURL: string, username: string): Promise<Video>;
     findById(id: string): Promise<Video>;
     deleteById(id: string): Promise<void>;

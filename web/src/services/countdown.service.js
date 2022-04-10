@@ -19,6 +19,11 @@ export const detailCountdown = async (data) => {
     return response;
 }
 
+export const detailCountdownHome = async (data) => {
+    let response = await publicGetApi(`/countdown/detail-home/${data}`);
+    return response;
+}
+
 export const deleteCountdown = async (data) => {
     let response = await privateDeleteApi(`/countdown/delete/${data}`)
     return response

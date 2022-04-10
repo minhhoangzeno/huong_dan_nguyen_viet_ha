@@ -1,6 +1,7 @@
 
-import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
-import { faChartPie, faHandHoldingUsd, faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBlogger, faFacebookMessenger } from "@fortawesome/free-brands-svg-icons";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { faChartPie, faNotesMedical, faSignOutAlt, faTimes, faUserAstronaut, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Badge, Button, Dropdown, Image, Nav, Navbar } from '@themesberg/react-bootstrap';
 import React, { useState } from "react";
@@ -77,16 +78,16 @@ export default (props = {}) => {
             <Nav className="flex-column pt-3 pt-md-0">
 
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
-              <NavItem title="Blog" icon={faHandHoldingUsd} link={Routes.Blog.path} />
+              <NavItem title="Blog" icon={faBlogger} link={Routes.Blog.path} />
               {(user.roles === "admin" || user.roles === "superadmin") && <NavItem title="Role User" icon={faUserAstronaut} link={Routes.User.path} />}
-              <NavItem title="Video" icon={faHandHoldingUsd} link={Routes.Video.path} />
-              {(user.roles === "admin" || user.roles === "superadmin") && <NavItem title="Feedback" icon={faUserAstronaut} link={Routes.Feedback.path} />}
+              <NavItem title="Video" icon={faVideo} link={Routes.Video.path} />
+              {(user.roles === "admin" || user.roles === "superadmin") && <NavItem title="Feedback" icon={faFacebookMessenger} link={Routes.Feedback.path} />}
 
-              <NavItem title="Product" icon={faHandHoldingUsd} link={Routes.Product.path} />
+              <NavItem title="Product" icon={faNotesMedical} link={Routes.Product.path} />
 
               <Dropdown.Divider className="my-3 border-indigo" />
 
-              <NavItem title="Countdown" icon={faHandHoldingUsd} link={Routes.Countdown.path} />
+              <NavItem title="Countdown" icon={faClock} link={Routes.Countdown.path} />
             </Nav>
           </div>
         </SimpleBar>

@@ -67,7 +67,11 @@ export default () => {
                                                     style={{ cursor: 'pointer' }}
                                                 >
                                                     <div>
-                                                        <img alt='' src={`${SERVER.URL_IMAGE}${item.photoURL}`} />
+                                                        <img alt='' src={`${SERVER.URL_IMAGE}${item.photoURL}`} 
+                                                            width={150}
+                                                            height={100}
+                                                            style={{objectFit:'cover'}}
+                                                        />
                                                     </div>
                                                     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginLeft: 20 }} >
                                                         <h4>{item?.title}</h4>

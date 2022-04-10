@@ -13,6 +13,12 @@ export declare class VideoController {
             _id: any;
         })[];
     }>;
+    getVideosByHome(skipNumber: any): Promise<{
+        totalPage: number;
+        data: (import("./schemas/video.schemas").Video & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        })[];
+    }>;
     uploadFile(files: {
         file?: Express.Multer.File[];
         videoURL?: Express.Multer.File[];

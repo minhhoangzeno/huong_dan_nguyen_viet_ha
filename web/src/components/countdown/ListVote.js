@@ -22,8 +22,6 @@ export default ({ countdownId }) => {
         }))
         setCheck(resp)
     }
-   
-   
     useEffect(() => {
         search()
         checkVoted() // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,6 +64,7 @@ function VoteItem({ item, countdownId , check, setCheck}) {
                         <div className="modal-voting">
                             <div className="dark-bg" />
                             <div className="voting-btn"
+                            style={{padding:'8px 24px',fontSize:12}}
                                 onClick={() => {
                                     check ? addToast("Bạn đã vote cho sự kiện rồi!", { appearance: 'success', autoDismiss: 1000 }) : setShow(true)
                                 }}

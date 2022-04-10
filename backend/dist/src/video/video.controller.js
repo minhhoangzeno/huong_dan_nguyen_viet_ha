@@ -29,6 +29,9 @@ let VideoController = class VideoController {
     async getVideos(skipNumber) {
         return this.videoService.findAll(skipNumber);
     }
+    async getVideosByHome(skipNumber) {
+        return this.videoService.findAllVideoByHome(skipNumber);
+    }
     async uploadFile(files, body, req) {
         return this.videoService.createVideo(body, files.file[0].filename, files.videoURL[0].filename, req.user._doc.fullName);
     }
@@ -53,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], VideoController.prototype, "getVideos", null);
+__decorate([
+    (0, common_1.Get)('home/:skipNumber'),
+    __param(0, (0, common_1.Param)('skipNumber')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], VideoController.prototype, "getVideosByHome", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)('create'),

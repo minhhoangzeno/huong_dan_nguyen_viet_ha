@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
 import Sidebar from "../components/Sidebar";
 import { Routes } from "../routes";
-import Blog from "./blog/Blog";
+import Blog from "../pages/client/BlogPage";
 import BlogAdd from './blog/BlogAdd';
 import BlogDetail from "./blog/BlogDetail";
 import BlogEdit from "./blog/BlogEdit";
@@ -41,7 +41,7 @@ import Settings from './Settings';
 import BootstrapTables from "./tables/BootstrapTables";
 import Transactions from "./Transactions";
 import User from "./user/User";
-import Video from "./video/Video";
+import Video from "../pages/client/VideoPage";
 import VideoAdd from "./video/VideoAdd";
 import VideoDetail from "./video/VideoDetail";
 import VideoEdit from "./video/VideoEdit";
@@ -115,13 +115,13 @@ export default function ProvideAuth() {
             <Route exact path={Routes.ChangePassword.path} component={ChangePassword} />
             {/* components */}
 
-            <RouteWithSidebar exact path={Routes.Blog.path} component={Blog} />
+            <Route exact path={Routes.Blog.path} component={Blog} />
             <RouteWithSidebar exact path={Routes.BlogAdd.path} component={BlogAdd} />
             <Route exact path={Routes.BlogDetail.path} component={BlogDetail} />
             <RouteWithSidebar exact path={Routes.BlogEdit.path} component={BlogEdit} />
           
 
-            <RouteWithSidebar exact path={Routes.Video.path} component={Video} />
+            <Route exact path={Routes.Video.path} component={Video} />
             <RouteWithSidebar exact path={Routes.VideoAdd.path} component={VideoAdd} />
             <Route exact path={Routes.VideoDetail.path} component={VideoDetail} />
             <RouteWithSidebar exact path={Routes.VideoEdit.path} component={VideoEdit} />

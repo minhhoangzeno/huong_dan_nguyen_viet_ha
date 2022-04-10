@@ -22,6 +22,11 @@ export class CountdownController {
         return this.countdownService.findById(id);
     }
 
+    @Get('detail-home/:id')
+    async getDetailHome(@Param('id') id) {
+        return this.countdownService.findCountDownHomeById(id);
+    }
+
     @UseGuards(JwtAuthGuard)
     @Post('create')
     async createCountdown(@Body() body) {

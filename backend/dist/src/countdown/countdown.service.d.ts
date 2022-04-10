@@ -20,6 +20,15 @@ export declare class CountdownService {
             _id: any;
         })[];
     }>;
+    findCountDownHomeById(id: any): Promise<{
+        total: number;
+        countdown: CountDown & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        };
+        products: (ProductCountDown & import("mongoose").Document<any, any, any> & {
+            _id: any;
+        })[];
+    }>;
     createCountdown(title: any, startDate: any, endDate: any, products: any): Promise<CountDown>;
     updateCountdown(title: any, startDate: any, endDate: any, products: any, id: any): Promise<CountDown>;
     removeCountdown(id: any): Promise<CountDown>;
